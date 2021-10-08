@@ -13,3 +13,7 @@ about:
 contact:
     path: /contact
     controller: App\Controller\HomeController::contact
+
+default:
+    path: /contact
+    controller: App\Controller\DefaultController::default
