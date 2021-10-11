@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} 
+    Hello MyViewController!
+{% endblock %}
+
+{% block body %}
+        <h1> {{ cours_name }}</h1>
+
+        <ul>
+            
+            {{ dump(tableau[0]) }}
+            <li>
+                {{ tableau[0] }}
+            </li>
+            <li>
+             {{ tableau[1] }}
+            </li>
+            <li>
+             {{ tableau[2] }}
+            </li>
+        </ul>
+
+
+{% endblock %}

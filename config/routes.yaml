@@ -17,3 +17,7 @@ contact:
 default:
     path: /contact
     controller: App\Controller\DefaultController::default
+
+view:
+    path: /view
+    controller: App\Controller\ViewController::view
