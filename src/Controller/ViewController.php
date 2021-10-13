@@ -7,9 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/view")
- */
 
 class ViewController extends AbstractController
 {
@@ -69,6 +66,29 @@ class ViewController extends AbstractController
 
             'cours_name' => 'COMPOSANTE VUE',
             'tableau' => $tab,
+        ]);
+    }
+ /**
+     * @Route("/lien", name="index_lien")
+     */
+    public function lien(): Response
+    {
+        return $this->render('view/index.html.twig', [
+            'controller_name' => 'ViewController',
+        ]);
+    }
+
+       /**
+     * @Route("calcul", name="index_calcul")
+     */
+    public function calcul(): Response
+    {
+        $x = 15615415564;
+        $y = 522115656;
+        return $this->render('view/calcul.html.twig', [
+            'controller_name' => 'ViewController',
+            'x' => $x,
+            'y' => $y,
         ]);
     }
 
