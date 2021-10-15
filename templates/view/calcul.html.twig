@@ -10,8 +10,8 @@
 
 		<h3>			
             ADDITION </br>
-            {% set addition = x + y  %}
-			{{x}} </br> + </br>	{{y}} </br>__________</br>{{ addition }} </br></br></br>
+            {% set addition = x - y  %}
+			{{x}} </br> - </br>	{{y}} </br>__________</br>{{ addition }} </br></br></br>
             	
             SOUSTRACTION </br>
             {% set soustraction = x - y  %}
@@ -28,6 +28,84 @@
 			{{x}} </br> / </br>	{{y}} </br>__________</br>{{ division }} </br></br></br>
             
         </h3>
+        </br></br></br>
+
+
+</br></br></br>
+
+ <table>
+ <style>
+      table {border-style: ridge; border-color: #8ebf42;}
+      th  {border:5px solid #095484;}   
+      td {border:20px groove #1c87c9;}
+    </style>
+     <thead>
+       <tr>
+         <th>Opérations</th>
+         <th>A</th>
+         <th>B</th>
+         <th>C</th>
+         <th>D</th>
+         <th>Résultat</th>
+       </tr>
+     </thead>
+
+     <tbody>
+       <tr>
+         <td>Addition</td>
+          {% set A,B,C,D = 10,11,12,15  %}
+         <td> {{A}} </td>
+         <td> {{B}} </td>
+         <td> {{C}} </td>
+         <td> {{D}} </td>
+         <td>              
+              {% set addition = A + B + C + D  %} 
+              {{ addition }}   
+         </td>
+       </tr>
+
+       <tr>
+         <td>Soustraction</td>
+          {% set A,B,C,D = 20,11,13,16  %}         
+         <td> {{A}} </td>
+         <td> {{B}} </td>
+         <td> {{C}} </td>
+         <td> {{D}} </td>
+         <td> 
+         {% set soustraction = A - B - C - D  %} 
+              {{ soustraction }}         
+              
+        </td>
+       </tr>
+
+       <tr>
+          <td>Multiplication</td>
+          {% set A,B,C,D = 30,11,14,17  %}
+         <td> {{A}} </td>
+         <td> {{B}} </td>
+         <td> {{C}} </td>
+         <td> {{D}} </td>
+         <td>  
+         {% set multiplication = A * B * C * D  %} 
+              {{ multiplication }}              
+        </td>
+       </tr>
+
+       <tr>
+         <td>Division</td>
+          {% set A,B = 40,11 %}
+         <td> {{A}} </td>
+         <td> {{B}} </td>
+         <td></td>
+         <td></td>
+         <td>
+         {% set division = A/B %}
+         {{ division }}
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   
 
 
 

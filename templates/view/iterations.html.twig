@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} VIEW SYMFONY {% endblock %}
+
+{% block body %}
+
+<h2> VIEW SYMFONY </h2>
+<hr>
+
+<ul> 
+<h1> // I - Conditions dans la vue </h1>
+<h1> // Structure itérative </h1>
+
+
+{# - affiche 0123456789 #}            
+    {% for i in 0..9 %}  
+
+       {{ i }}<br>
+    
+    {% endfor %}
+            
+{% endblock %}

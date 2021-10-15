@@ -1,0 +1,76 @@
+
+Symfony / Travaux Pratiques / 2021
+ 
+
+TWIG
+Exo 1 
+	Créez un contrôleur ViewController 
+	La route de ce contrôleur doit permettre de récupérer deux paramètres de requête nom et prénom et les envoyer à la vue à partir de la méthode (‘Affichage’),
+	La vue affiche les valeurs envoyées par le contrôleur
+Exo 2  
+	Mettre en place une Vue qui affiche la liste des Stagiaire de la salle DWWM2 de l’année 2021
+Exo 3 
+Mettre en place une page d’accueil qui affiche les 2 exercices précedents :
+-	Accueil
+-	A propos,
+-	Documentation,
+-	Nous Contacter
+Exo 4 
+A partir de la valeur X & Y, mettre en place un programme qui affichera le résultat final dans les opérations suivantes :
+	Addition,
+	Soustraction
+	Multiplication
+	Division
+	PuissanceS
+Exo 5 
+
+	             A	B	C	D	Résultat
+Addition	    10	11	12	15	
+Soustraction	20	11	13	16	
+Multiplication	30	11	14	17	
+Division	    40	11			
+
+
+Exo 6 
+Voici les critère pour 
+	Moyenne >= 12 = ACQUIS,
+	Moyenne >= 10 = En cours de Connaissance,
+	Moyenne < 10 = Non Acquis
+Ecrire la fonction qui calcule la note et affecte la décision d’admission des étudiants 
+
+					Pierre		Paul	Jacques		Delphine
+Analyse				10			11			9			15
+Algorithme			8			10			15			8
+Programmation		10			11			14			17
+Recherche			10			11			9			4
+MOYENNE				
+DECISION				
+
+
+
+In JS a variable is an element that contains a value like a box having something that can be changed.
+var is used to declare a variable in JS's  early life. But it is not recommended to use now. It's better to use let nowadays.
+const is used to declare an element which value doesn't change. These elements are called constants.
+Datatype : 
+	In coding the type of data is used to determine the kind of output that an element can have:
+	string: alphanumerical characters
+	integer: numerical characters
+	float: floating point numbers
+	array: table of data
+object: 
+	is an element which have many properties or attributes. In JS we use class to create an object. For example if we create an object Said we proceed like this 
+	class Said {
+		name 
+		firstname 
+		country 
+		age 
+		...
+	}
+	name,firstname,country,age are the properties of Said.
+                
+
+
+
+
+
+

@@ -92,5 +92,35 @@ class ViewController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("conditions", name="index_conditions")
+     */
+    public function conditions(): Response
+    {       
+        return $this->render('view/conditions.html.twig', [
+            'controller_name' => 'ViewController',          
+        ]);
+    }
+
+    /**
+     * @Route("iterations", name="index_iterations")
+     */
+    public function iterations(): Response
+    {       
+        return $this->render('view/iterations.html.twig', [
+            'controller_name' => 'ViewController',          
+        ]);
+    }
+
+      /**
+     * @Route("filtres", name="index_filtres")
+     */
+    public function filtres(): Response
+    {       
+        return $this->render('view/filtres.html.twig', [
+            'controller_name' => 'ViewController',          
+        ]);
+    }
+
 
 }

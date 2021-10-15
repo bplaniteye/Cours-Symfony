@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	VIEW SYMFONY
+{% endblock %}
+
+{% block body %}
+
+	<h2>
+		VIEW SYMFONY
+	</h2>
+	<hr>
+
+	<ul>
+		<h1>
+			// I - Conditions dans la vue
+		</h1>
+
+		// if ... endif
+		<br>
+		// if ... else ... endif
+		<br>
+		// if ... elsif ... else ... endif
+		<br>
+
+
+		{% set Git, Uml, Symfony, java = '12', '15', '15', '10' %}
+
+		{% if Git > 10 %}
+			Votre Note en GIT :
+			{{ Git }}
+			<br>
+			Votre Mention = ACQUIS
+		{% endif %}
+
+
+		{% if Git > 15 %}
+			ACQUIS
+			<br>
+		{% else %}
+			NON ACQUIS
+			<br>
+		{% endif %}
+
+		Votre note en UML:
+		{{ Uml }}
+		<br>
+		{% if Uml > 14 %}
+			ACQUIS
+			<br>
+		{% elseif Uml < 12 %}
+			EN COURS D'acquisistion
+			<br>
+		{% else %}
+			NON Acquis
+		{% endif %}
+
+	</br>
+
+	<table>
+		<style>
+			table {
+				border-style: ridge;
+				border-color: #8ebf42;
+			}
+			th {
+				border: 5px solid #095484;
+			}
+			td {
+				border: 20px groove #1c87c9;
+			}
+		</style>
+		{% set Pi , Pa , Ja , De = "Pierre" , "Paul" , "Jacques" , "Delphine"  %}
+		{% set An_Pi , Alg_Pi , Prg_Pi , Rech_Pi = 10 , 8 , 10 , 10  %}
+		{% set An_Pa , Alg_Pa ,Prg_Pa , Rech_Pa = 11 , 10 , 11 , 11  %}
+		{% set An_Ja , Alg_Ja , Prg_Ja , Rech_Ja = 9 , 15 , 14 , 9  %}
+		{% set An_De , Alg_De , Prg_De , Rech_De = 15 , 8 , 17 , 4  %}
+
+		<thead>
+			<tr>
+				<th></th>
+				<th>{{Pi}}</th>
+				<th>{{Pa}}</th>
+				<th>{{Ja}}</th>
+				<th>{{De}}</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>Analyse</td>
+				<td>
+					{{An_Pi}}
+				</td>
+				<td>
+					{{An_Pa}}
+				</td>
+				<td>
+					{{An_Ja}}
+				</td>
+				<td>
+					{{An_De}}
+				</td>
+			</tr>
+
+			<tr>
+				<td>Algorithme</td>
+				<td>
+					{{Alg_Pi}}
+				</td>
+				<td>
+					{{Alg_Pa}}
+				</td>
+				<td>
+					{{Alg_Ja}}
+				</td>
+				<td>
+					{{Alg_De}}
+				</td>
+			</tr>
+
+			<tr>
+				<td>Programmation</td>
+				<td>
+					{{Prg_Pi}}
+				</td>
+				<td>
+					{{Prg_Pa}}
+				</td>
+				<td>
+					{{Prg_Ja}}
+				</td>
+				<td>
+					{{Prg_De}}
+				</td>
+			</tr>
+
+			<tr>
+				<td>Recherche</td>
+				<td>{{Rech_Pi}}</td>
+				<td>{{Rech_Pa}}</td>
+				<td>{{Rech_Ja}}</td>
+				<td>{{Rech_De}}</td>
+			</tr>
+
+			<tr>
+				<td>Moyenne</td>
+				{% set Moy_Pi = (An_Pi + Alg_Pi + Prg_Pi + Rech_Pi)/4 %}
+				<td>{{Moy_Pi}}</td>
+				{% set Moy_Pa = (An_Pa + Alg_Pa + Prg_Pa + Rech_Pa)/4 %}
+				<td>{{Moy_Pa}}</td>
+				{% set Moy_Ja = (An_Ja + Alg_Ja + Prg_Ja + Rech_Ja)/4 %}
+				<td>{{Moy_Ja}}</td>
+				{% set Moy_De = (An_De + Alg_De + Prg_De + Rech_De)/4 %}
+				<td>{{Moy_De}}</td>
+			</tr>
+
+			<tr>
+				<td>Décision</td>
+				<td>				
+					{% if Moy_Pi >= 12 %}
+						Acquis
+					{% elseif Moy_Pi >= 10 %}
+						En cours d'acquisistion
+					{% else %}
+						Non acquis
+					{% endif %}					
+				</td>
+
+				<td>				
+					{% if Moy_Pa >= 12 %}
+					Acquis
+					{% elseif Moy_Pa >= 10 %}
+						En cours d'acquisistion
+					{% else %}
+						Non acquis
+					{% endif %}					
+				</td>
+
+				<td>					
+					{% if Moy_Ja >= 12 %}
+						Acquis
+					{% elseif Moy_Ja >= 10 %}
+						En cours d'acquisistion
+					{% else %}
+						 Non acquis
+					{% endif %}				
+				</td>
+
+				<td>				
+					{% if Moy_De >= 12 %}
+						Acquis
+					{% elseif Moy_De >= 10 %}
+						En cours d'acquisistion
+					{% else %}
+					Non acquis
+					{% endif %}				
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+{% endblock %}
