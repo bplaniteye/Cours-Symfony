@@ -95,7 +95,7 @@ class BiblioController extends AbstractController
      */
     public function utilisateurs(): Response
     {
-        return $this->render('bibutilisateurslio/utilisateurs.html.twig', [
+        return $this->render('biblio/utilisateurs.html.twig', [
             'controller_name' => 'BiblioController',
         ]);
     }
