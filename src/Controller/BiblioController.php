@@ -59,7 +59,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("contact", name="index_contact")
+     * @Route("contact", name="index_contactbiblio")
      */
     public function contact(): Response
     {
