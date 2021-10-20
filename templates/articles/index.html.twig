@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Articles{% endblock %}
+
+{% block body %}
+    <h1>Articles index</h1>
+<table class="table">
+
+        <tbody>
+        {% include 'menu_articles.html.twig' %}
+        {% for article in articles %}
+        {# https://twig.symfony.com/doc/3.x/tags/for.html #}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.Title }}</td>
+                <td>{{ article.Contenu }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
