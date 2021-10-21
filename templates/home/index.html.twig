@@ -1,28 +1,43 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello Symfony !{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<button class="bouton" >
+<a class="lien" href="{{ path('index_biblio') }}">Biliothèque</i></a>
+</button>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/Symfony/test02/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/Symfony/test02/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-     <!-- <li><a href="/about">A propos</a></li>
-        <li><a href="/contact">Contact</a></li>
-          <li><a href="/liste">Liste des stagiaires</a></li>
-            <li><a href="/identite">Identité</a></li> -->
-            
-     
-    </ul>
-     
+<button class="bouton" >
+<a class="lien" href="{{ path('index_a_propos') }}">A propos</a>
+</button>
 
-</div>
+<button class="bouton" >
+<a class="lien" href="{{ path('index_livres') }}">Les livres</a>
+</button>
+
+<button class="bouton" >
+<a class="lien" href="{{ path('index_locations') }}">Les locations</a>
+</button>
+
+<button class="bouton" >
+<a class="lien" href="{{ path('index_documentation') }}">Documentation</a>
+</button>
+
+<button class="bouton" >
+<a class="lien" href="{{ path('index_contactbiblio') }}">Nous Contacter</a>
+</button>
+
+<button class="bouton" >
+<a class="lien" href="{{ path('index_connexion') }}">Connexion</a>
+</button>
+
+<button class="bouton" >
+<a class="lien" href="{{ path('index_administration') }}">Administration</a>
+</button>
+
+
+
+
 {% endblock %}
+
+{% block footer %}Hello Symfony !{% endblock %}

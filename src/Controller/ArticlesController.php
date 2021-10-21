@@ -2,25 +2,50 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Articles;
+use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
 
-class ArticlesController extends AbstractController
-{
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
     /**
-     * @Route("articles", name="index_articles")
+     * @Route("/articles")
      */
-    public function index(): Response
+    
+     class ArticlesController extends AbstractController
     {
-        $repo = $this->getDoctrine()->getRepository(Articles::class);
+    /**
+     * @Route("/", name="articles_index")
+     */
+
+    // 1e Methode
+    
+    public function index(): Response
+    {   
+        $repo= $this->getDoctrine()->getRepository(Articles::class);
         $articles = $repo->findAll();
 
         return $this->render('articles/index.html.twig', [
             'controller_name' => 'ArticlesController',
-            'articles' =>$articles,
+            'articles' => $articles,
+        ]);
+    }
+     
+    
+    /**
+     * @Route("/{id}", name="articles_affichage", methods={"GET"})
+     */
+    public function show(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager ): Response
+    {
+        return $this->render('articles/affichage.html.twig', [
+            'id'=>$articles->getId(),
+            'articles' => $articles,
         ]);
     }
 }

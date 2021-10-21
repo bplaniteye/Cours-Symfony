@@ -7,13 +7,13 @@
 <table class="table">
 
         <tbody>
-        {% include 'menu_articles.html.twig' %}
+      
         {% for article in articles %}
         {# https://twig.symfony.com/doc/3.x/tags/for.html #}
             <tr>
                 <td>{{ article.id }}</td>
-                <td>{{ article.Title }}</td>
-                <td>{{ article.Contenu }}</td>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.contenu }}</td>
             </tr>
         {% else %}
             <tr>

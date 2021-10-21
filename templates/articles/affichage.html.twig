@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Articles{% endblock %}
+
+{% block body %}
+    <h1>Afficher un article</h1>
+<table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Résumé</th>
+                <th>Date</th>
+                <th>Image</th>
+                
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>{{ articles.id }}</td>
+                <td>{{ articles.contenu }}</td>
+                 <td>{{ articles.resume }}</td>
+                <td>{{ articles.date| date("d/m/Y") }}</td>
+                 <td>{{ articles.image }}</td>               
+            </tr>
+
+        </tbody>
+    </table>
+{% endblock %}
