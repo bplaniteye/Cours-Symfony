@@ -10,7 +10,7 @@ use Faker;
 
 class ArticlesFixtures extends Fixture
 {
-    /*
+   /*
     public function load(ObjectManager $manager): void
     {
 
@@ -26,7 +26,8 @@ class ArticlesFixtures extends Fixture
         }
      $manager->flush();
     }
-*/
+    */
+
 public function load(ObjectManager $manager): void
 
     {
@@ -46,4 +47,5 @@ public function load(ObjectManager $manager): void
         }    
      $manager->flush();
     }
+  
 }
