@@ -3,6 +3,7 @@
 
 {% block body %}
 
+<div class="border d-flex flex-column">
 <button class="bouton" >
 <a class="lien" href="{{ path('index_biblio') }}">Biliothèque</i></a>
 </button>
@@ -35,9 +36,7 @@
 <a class="lien" href="{{ path('index_administration') }}">Administration</a>
 </button>
 
-
-
-
 {% endblock %}
 
-{% block footer %}Hello Symfony !{% endblock %}
+{% block footer %}
+Hello Symfony !{% endblock %}
