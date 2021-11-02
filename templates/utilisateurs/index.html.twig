@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Utilisateurs index</h1>
+ <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+               <th>Date de naissance</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Login</th>
+                <th>Rôle</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+         {# https://twig.symfony.com/doc/3.x/tags/for.html #}
+        {% for utilisateur in utilisateurs %}
+            <tr>           
+                <td>{{ utilisateur.id }}</td>
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+              <td>{{ utilisateur.date_de_naissance|date() }}</td>
+                <td>{{ utilisateur.adresse }}</td>
+                <td>{{ utilisateur.email }}</td>
+                <td>{{ utilisateur.login }}</td>
+                <td>{{ utilisateur.role }}</td>  
+               <td>
+                <button class="bouton">  <a class="lien" href="{{ path('utilisateurs_affichage',{ 'id':utilisateur.id }) }}"> Afficher </a> </button>
+                </td>                         
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+        
+     
+{% endblock %}

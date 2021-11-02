@@ -59,7 +59,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("bibliocontact", name="index_contactbiblio")
+     * @Route("contact", name="index_contactbiblio")
      */
     public function contact(): Response
     {
@@ -79,7 +79,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("biblioadministration", name="index_administration")
+     * @Route("administration", name="index_administration")
      */
     public function administration(): Response
     {
@@ -111,7 +111,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("bibliocontenu", name="index_bibliocontenu")
+     * @Route("contenu", name="index_contenu")
      */
     public function contenu(): Response
     {
@@ -121,7 +121,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("biblioimages", name="index_biblioimages")
+     * @Route("images", name="index_images")
      */
     public function images(): Response
     {
@@ -131,7 +131,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("bibliocategorie", name="index_bibliocategorie")
+     * @Route("categorie", name="index_categorie")
      */
     public function categorie(): Response
     {
@@ -141,7 +141,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("biblioarticles-a-la-une", name="index_biblioarticles-a-la-une")
+     * @Route("articles-a-la-une", name="index_articles-a-la-une")
      */
     public function articlesALaUne(): Response
     {
@@ -151,7 +151,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("biblioextensions", name="index_extensions")
+     * @Route("extensions", name="index_extensions")
      */
     public function extensions(): Response
     {
@@ -161,7 +161,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("bibliologout", name="index_logout")
+     * @Route("logout", name="index_logout")
      */
     public function logout(): Response
     {

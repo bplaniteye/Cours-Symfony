@@ -30,7 +30,7 @@ class LocationFixtures extends Fixture
         ->setAccessibility(" access $i")
         ->setALaUne("a la une $i")
         ->setSTatus($tab2[0]) ;
-$manager->persist($location);
+        $manager->persist($location);
         }
         
           
