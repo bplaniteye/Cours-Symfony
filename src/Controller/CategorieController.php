@@ -34,12 +34,10 @@ class CategorieController extends AbstractController
     /**
      * @Route("/newcategorie", name="index_newcategorie", methods={"GET", "POST"})
      */
-    public function newuser(Request $request, EntityManagerInterface $em): Response
+    public function newcategorie(Request $request, EntityManagerInterface $em): Response
     {
         $faker = Faker\Factory::create('fr_FR');
-       $categorie = new Categorie();
-       $tab = ["admin","usager"];
-       shuffle($tab);
+       $categorie = new Categorie();       
        // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
         $categorie->setTitre($faker->sentence());
         $categorie->setResume($faker->sentence()) ;        
@@ -54,7 +52,7 @@ class CategorieController extends AbstractController
 
     
     /**
-     * @Route("/{id}", name="index_showcategorie", methods={"GET"})
+     * @Route("showcategorie/{id}", name="index_showcategorie", methods={"GET"})
      */
     public function showcategorie(Categorie $categorie, CategorieRepository $categorieRepository, Request $request, EntityManagerInterface $manager ): Response
     {

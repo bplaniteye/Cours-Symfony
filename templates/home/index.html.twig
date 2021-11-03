@@ -3,14 +3,12 @@
 
 {% block body %}
 
-<div class="border d-flex flex-column">
-<button class="bouton" >
-<a class="lien" href="{{ path('index_biblio') }}">Biliothèque</i></a>
-</button>
+<div class="flex flex-col mt-5">
+<div class="flex gap-5">      
 
-<button class="bouton" >
-<a class="lien" href="{{ path('index_a_propos') }}">A propos</a>
-</button>
+    <a class="lien h-32 w-2/3 border-box bg-yellow-500 animate-pulse text-4xl text-center font-bold align-middle" href="{{ path('index_biblio') }}">Bibliothèque</i></a>   
+        
+</div>
 
 
 {% endblock %}

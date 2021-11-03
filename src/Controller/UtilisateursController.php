@@ -18,7 +18,7 @@ use Faker;
 class UtilisateursController extends AbstractController
 {
     /**
-     * @Route("/admin", name="index_admin")
+     * @Route("/superadmin", name="index_admin")
      */
     public function admin(): Response
     {
