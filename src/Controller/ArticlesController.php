@@ -20,6 +20,40 @@ use Symfony\Component\Routing\Annotation\Route;
     
      class ArticlesController extends AbstractController
     {
+         /**
+     * @Route("/newarticleform", name="index_newarticleform" , methods={"GET","POST"})
+    */
+        // Ici on Fait une Enregistrement avec une Formulaire
+    
+    public function pageForm(Request $request, EntityManagerInterface $manager)
+    {
+        $articles =new Articles(); // Instanciation
+
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($articles) 
+                    ->add('titre')
+                    ->add('resume')
+                    ->add('contenu')
+                    ->add('date')
+                    ->add('image')
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+            $manager->persist($articles); 
+            $manager->flush();
+
+       
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('articles/newarticleform.html.twig', [
+            'formArticle' => $form->createView()
+        ]);
+    }
+
+
     /**
      * @Route("/", name="articles_index")
      */
