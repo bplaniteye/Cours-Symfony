@@ -103,7 +103,7 @@ class Utilisateurs
         return $this;
     }
 
-    public function getDateDeNaissance(): ?\DateTimeInterface
+    public function getdate_de_naissance(): ?\DateTimeInterface
     {
         return $this->date_de_naissance;
     }

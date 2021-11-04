@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle catégorie{% endblock %}
+
+{% block body %}
+
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-green-600">
+  <a class="lien" href="{{ path('index_categorie') }}">Retour au tableau des catégories</a> 
+</button>
+</div>
+
+<div class=" flex flex-col align-center mt-5">
+<h1 class="text-4xl text-center text-green-600 font-bold">NOUVELLE CATEGORIE</h1>
+
+    <div class="gap-5 mt-5 bg-green-600 text-center text-white font-bold">ID </br> {{ categorie.id }}</div>
+
+    <div class=" gap-5 mt-5 border-box bg-green-600 text-center text-white font-bold"> TITRE </br> {{ categorie.titre }}</div>
+
+    <div class=" gap-5 mt-5 border-box bg-green-600 text-center text-white font-bold">RESUME </br> {{ categorie.resume }}</div>
+</div>
+
+
+
+
+ 
+        
+     
+{% endblock %}

@@ -1,38 +1,28 @@
-<h3>
-	<button>
-		<a href="{{ path('index_biblio') }}">Accueil</a>
-	</button>
+<nav class="flex">	
+	<a class="rounded-full h-24 w-24 flex items-center justify-center bg-indigo-600 text-white" href="{{ path('home') }}">Accueil</a>
 
-	<button>
-		<a href="{{ path('index_systeme') }}">Système</a>
-	</button>
+<div class="my-auto ml-3">
+	<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('articles_index') }}">Articles</a> 
+</button>
 
-	<button>
-		<a href="{{ path('index_utilisateurs') }}">Utilisateurs</a>
-	</button>
+<button class="rounded-full py-3 px-6 bg-green-600">
+  <a class="lien" href="{{ path('index_categorie') }}">Catégories</a> 
+</button>
 
-	<button>
-		<a href="{{ path('index_contenu') }}">Contenu</a>
-	</button>
+<button class="rounded-full py-3 px-6 bg-blue-600">
+  <a class="lien" href="{{ path('index_locations') }}">Locations</a> 
+</button>
 
-	<button>
-		<a href="{{ path('index_categorie') }}">Catégorie</a>
-	</button>
+<button class="rounded-full py-3 px-6 bg-yellow-600">
+  <a class="lien" href="{{ path('index_utilisateur') }}">Utilisateurs</a> 
+</button>
+</div>
 
-	<button>
-		<a href="{{ path('index_articles-a-la-une') }}">Articles à la une</a>
-	</button>
+</nav>
 
-	<button>
-		<a href="{{ path('index_images') }}">Images</a>
-	</button>
 
-	<button>
-		<a href="{{ path('index_extensions') }}">Extensions</a>
-	</button>
 
-	<button>
-		<a href="{{ path('index_logout') }}">Logout</a>
-	</button>
+	
 
-</h3>
+

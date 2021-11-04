@@ -1,16 +1,19 @@
 {% extends 'base.html.twig' %}
+{% block title %}Bibliothèque{% endblock %}
 
-
-{% block title %}
-	BIBLIOTHEQUE
-{% endblock %}
- {% block header %}{% endblock %}
 {% block body %}
-<h1>BIENVENUE SUR LA BIBLIOTHEQUE</h1>
+<h1> BIENVENUE SUR LA BIBLIOTHEQUE</h1>
 
+<div class="border d-flex flex-column">
+<button class="bouton" >
+<a class="lien" href="{{ path('index_utilisateur') }}">Espace Utilisateur</i></a>
+</button>
+
+<button class="bouton" >
+<a class="lien" href="{{ path('index_admin') }}">Espace Administrateur</a>
+</button>
 
 {% endblock %}
 
 {% block footer %}
-
-{% endblock %}
+Hello Symfony !{% endblock %}

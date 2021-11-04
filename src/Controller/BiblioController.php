@@ -59,7 +59,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("contact", name="index_contactbiblio")
+     * @Route("bibliocontact", name="index_contactbiblio")
      */
     public function contact(): Response
     {
@@ -79,7 +79,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("administration", name="index_administration")
+     * @Route("biblioadministration", name="index_administration")
      */
     public function administration(): Response
     {
@@ -91,7 +91,7 @@ class BiblioController extends AbstractController
     // CONTROLLER ADMIN
 
       /**
-     * @Route("utilisateurs", name="index_utilisateurs")
+     * @Route("biblio_utilisateurs", name="index_biblio__utilisateurs")
      */
     public function utilisateurs(): Response
     {
@@ -111,7 +111,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("contenu", name="index_contenu")
+     * @Route("bibliocontenu", name="index_bibliocontenu")
      */
     public function contenu(): Response
     {
@@ -121,7 +121,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("images", name="index_images")
+     * @Route("biblioimages", name="index_biblioimages")
      */
     public function images(): Response
     {
@@ -131,7 +131,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("categorie", name="index_categorie")
+     * @Route("bibliocategorie", name="index_bibliocategorie")
      */
     public function categorie(): Response
     {
@@ -141,7 +141,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("articles-a-la-une", name="index_articles-a-la-une")
+     * @Route("biblioarticles-a-la-une", name="index_biblioarticles-a-la-une")
      */
     public function articlesALaUne(): Response
     {
@@ -151,7 +151,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("extensions", name="index_extensions")
+     * @Route("biblioextensions", name="index_extensions")
      */
     public function extensions(): Response
     {
@@ -161,7 +161,7 @@ class BiblioController extends AbstractController
     }
 
       /**
-     * @Route("logout", name="index_logout")
+     * @Route("bibliologout", name="index_logout")
      */
     public function logout(): Response
     {

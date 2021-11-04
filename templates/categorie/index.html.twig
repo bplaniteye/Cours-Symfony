@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie Index{% endblock %}
+
+{% block body %}
+
+{% include 'admin-menu.html.twig' %}
+
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-green-600">
+  <a class="lien" href="{{ path('index_newcategorie') }}"> Créer une nouvelle catégorie</a> 
+</button>
+</div>
+
+<div class="mt-5">
+<h1 class="text-4xl text-center text-green-600 font-bold">TABLEAU DES CATEGORIES</h1>
+
+ <table class="table-fixed border-separate border border-green-600" >
+        <thead class="bg-green-500 text-white">
+            <tr>
+                <th class="border border-green-600">Id</th>
+                <th class="border border-green-600">Titre</th>
+                <th class="border border-green-600">Résumé</th>
+                <th class="border border-green-600">Action</th>
+             
+            </tr>
+        </thead>
+        <tbody>
+         {# https://twig.symfony.com/doc/3.x/tags/for.html #}
+        {% for cat in categorie %}
+            <tr>           
+                <td class="border border-green-600">{{ cat.id }}</td>
+                <td class="border border-green-600">{{ cat.titre }}</td>
+                <td class="border border-green-600">{{ cat.resume }}</td>
+                     <td class="border border-green-600">
+                <button class="rounded-full py-3 px-6 bg-green-600">
+      <a class="lien" href="{{ path('index_showcategorie',{ 'id':cat.id }) }}"> Afficher </a> </button>
+                </td>            
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+ 
+        
+     
+{% endblock %}

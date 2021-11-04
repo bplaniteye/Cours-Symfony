@@ -1,0 +1,37 @@
+
+.example-wrapper { 
+    margin: 1em auto; 
+    max-width: 800px; 
+    width: 95%; 
+    font: 18px/1.5 sans-serif; }
+.example-wrapper code { 
+    background: #F5F5F5; 
+    padding: 2px 6px; }
+.bouton {
+    border: 3px; 
+    border-radius: 25px; 
+    background-color: royalblue; 
+    color : white; 
+    margin: 3px; 
+    padding : 8px; }
+
+    .lien {
+        text-decoration : none; 
+        color : white; }
+
+        /* Radial stripes */
+.radial-stripes {
+    background-image: radial-gradient(circle at top right, rgb(4, 20, 62) 0%, rgb(4, 20, 62) 28%,rgb(49, 29, 62) 28%, rgb(49, 29, 62) 45%,rgb(94, 38, 62) 45%, rgb(94, 38, 62) 63%,rgb(138, 47, 62) 63%, rgb(138, 47, 62) 100%);
+}
+.radial-stripes-2 {
+    background-image: radial-gradient(circle at top right, 
+    black 0%, 
+    green 28%, 
+    yellow 28%, 
+    red 45%, 
+    black 45%, 
+    green 63%,
+    yellow 63%, 
+    red 100%);
+}
+    
