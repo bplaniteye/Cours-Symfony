@@ -1,0 +1,126 @@
+[33mcommit bbca36c4a75debe60babb0e5a2ac6a3345dfc2cd[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 25fcbda a769737
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Thu Nov 4 18:28:55 2021 +0100
+
+    merging fixtures
+
+[33mcommit a769737329eaab11fe9b1ec9188047da7815419b[m[33m ([m[1;31morigin/ARTICLES[m[33m, [m[1;32mARTICLES[m[33m)[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Thu Nov 4 18:20:07 2021 +0100
+
+    Form error
+
+[33mcommit fc82f4d037305f68532145c68b1b743d93658335[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Wed Nov 3 16:09:14 2021 +0100
+
+    TailwindCSS
+
+[33mcommit afa997d5ed6f61fec0eef8f18489a9674bad29d9[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Tue Nov 2 17:05:37 2021 +0100
+
+    Admin & Utilisateur page
+
+[33mcommit f04deab37ca1f5484646e22f6d39cf8da6c3ad0d[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Tue Nov 2 11:27:02 2021 +0100
+
+    Fixtures Categorie,Location & Utilisateurs
+
+[33mcommit d1f025e2dac8fe7bc3152e0caf7460db17994729[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Fri Oct 22 17:37:14 2021 +0200
+
+    Affichage article par id
+
+[33mcommit 4a56d1b37c2b536fd1366813191cace6708f6f08[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Thu Oct 21 16:27:34 2021 +0200
+
+    Jeu de données Articles
+
+[33mcommit 25fcbda9317a5b5b56e570a5c7aed861e4a8b641[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Thu Oct 21 09:40:33 2021 +0200
+
+     Base
+
+[33mcommit 7b01eb1ea01eb9d1bf6eb36a65635d07a266d2f7[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Wed Oct 20 17:03:20 2021 +0200
+
+    Fixtures
+
+[33mcommit 78c2416cc5827e72ec751a42b635100c1b517682[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Mon Oct 18 16:54:47 2021 +0200
+
+    Corrections templates
+
+[33mcommit a843c43886b1cb34ff89fa27feb6d9fb78359990[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Mon Oct 18 15:58:19 2021 +0200
+
+    Corrections
+
+[33mcommit 047726ebb1d61b892d4bb2093690ecf62592f060[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Mon Oct 18 15:50:39 2021 +0200
+
+    Création BiblioController, templates & menus admin et user
+
+[33mcommit f18f3cac3753e1a27091eeb1a8423199b81aaf3b[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Mon Oct 18 14:13:16 2021 +0200
+
+    Création user menu & admin menu
+
+[33mcommit 6979999a920cd8cd9fcfd66d381a65e26f9ae9bf[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Fri Oct 15 13:54:35 2021 +0200
+
+    TP02: Création entités :Location,Categorie,Utilisateurs
+
+[33mcommit e7815dccfc0d7c68a51414e4e34f952e5f3d6c68[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Fri Oct 15 11:42:22 2021 +0200
+
+    Exos opérations, conditions/Filtres
+
+[33mcommit e24768a0e2b154d63da9f0c217bdb7578160b02b[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Wed Oct 13 15:46:00 2021 +0200
+
+    Opérations mathématiques
+
+[33mcommit 0499b7b2fb53c94ac679fb4ff82d2f3265d2f757[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Mon Oct 11 16:53:39 2021 +0200
+
+    Affichage variables, tableaux & liens
+
+[33mcommit 9e699e475edff403afdfaaba9ff6b009f669bbd8[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Fri Oct 8 14:38:11 2021 +0200
+
+    new Response & twig
+
+[33mcommit c7c77ad825e2155ce98872ec155b4f73e06c6143[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Tue Oct 5 14:20:50 2021 +0200
+
+    Création de routes
+
+[33mcommit 9c47580efe7f5e11beb63107969a8bf9c8e69285[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Mon Oct 4 15:43:58 2021 +0200
+
+    env & HomeController
+
+[33mcommit ca704478f9837310956c6fb72981e21331eeb3d2[m
+Author: bplaniteye <bplaniteye.pro@outlook.fr>
+Date:   Mon Oct 4 11:16:56 2021 +0200
+
+    HomeController
