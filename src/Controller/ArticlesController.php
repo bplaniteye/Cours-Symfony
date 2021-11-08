@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
      class ArticlesController extends AbstractController
     {
          /**
-     * @Route("/newarticleform", name="index_newarticleform" , methods={"GET","POST"})
+     * @Route("/articleform1", name="index_articleform1" , methods={"GET", "POST"})
     */
         // Ici on Fait une Enregistrement avec une Formulaire
     
@@ -43,19 +43,24 @@ use Symfony\Component\Routing\Annotation\Route;
         // Analyse des Requetes & Traitement des information 
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             $manager->persist($articles); 
             $manager->flush();
 
+            return $this->redirectToRoute('index_articles', 
+            ['id'=>$articles->getId()]); // Redirection vers la page
+        }
        
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
-        return $this->render('articles/newarticleform.html.twig', [
+        return $this->render('articles/articleform1.html.twig', [
             'formArticle' => $form->createView()
         ]);
     }
 
 
     /**
-     * @Route("/", name="articles_index")
+     * @Route("/", name="index_articles")
      */
 
     // 1e Methode
