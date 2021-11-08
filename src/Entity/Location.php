@@ -185,6 +185,11 @@ class Location
         return $this->a_la_une;
     }
 
+    public function geta_la_une(): ?string
+    {
+        return $this->a_la_une;
+    }
+
     public function setALaUne(string $a_la_une): self
     {
         $this->a_la_une = $a_la_une;

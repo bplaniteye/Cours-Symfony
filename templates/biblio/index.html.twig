@@ -1,19 +1,37 @@
 {% extends 'base.html.twig' %}
-{% block title %}Bibliothèque{% endblock %}
+
 
 {% block body %}
-<h1> BIENVENUE SUR LA BIBLIOTHEQUE</h1>
+{% include 'menu.html.twig' %} 
 
-<div class="border d-flex flex-column">
-<button class="bouton" >
-<a class="lien" href="{{ path('index_utilisateur') }}">Espace Utilisateur</i></a>
-</button>
+<div class="flex flex-col flex items-center justify-center">
+    
+    <div class="flex mt-5 ">
 
-<button class="bouton" >
-<a class="lien" href="{{ path('index_admin') }}">Espace Administrateur</a>
-</button>
+        <div class="flex rounded-full h-24 w-24 flex items-center justify-center ">   
+            <img src="images/users.png" alt="">
+        </div>
+
+        <div class="my-auto ml-3">
+            <button class="rounded-full w-full py-3 px-6 bg-red-600">
+                <a class="" href="{{ path('index_utilisateur') }}">Espace Usager</a>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="flex mt-5">
+        <div class="flex rounded-full h-24 w-24 flex items-center justify-center">          
+                <img src="images/admin.png" alt="">
+        </div>   
+
+        <div class="my-auto ml-3">
+                <button class="rounded-full w-full py-3 px-6 bg-red-600">
+                    <a class="" href="{{ path('index_admin') }}">Espace Administrateur</a>
+                </button>
+        </div>      
+    </div>
+
+</div>
 
 {% endblock %}
-
-{% block footer %}
-Hello Symfony !{% endblock %}

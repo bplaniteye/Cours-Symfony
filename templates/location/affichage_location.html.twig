@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}locations{% endblock %}
+
+{% block body %}
+
+{% include 'admin-menu.html.twig' %} 
+
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-blue-600">
+  <a class="lien" href="{{ path('index_nouvelle_location') }}"> Créer un nouvelle location</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-blue-600">loc
+  <a class="lien" href="{{ path('index_location_form1') }}">Formulaire #1</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-blue-600">
+  <a class="lien" href="{{ path('index_location_form2') }}">Formulaire #2</a> 
+</button>
+</div>
+
+                
+
+    <h1 class="text-4xl text-center text-blue-600 font-bold mt-5">TABLEAU DES LOCATIONS</h1>
+ <table class="table-fixed border-separate border border-blue-600 mt-5" >
+        <thead class="bg-blue-600 text-white">
+            <tr>
+                <th class="border border-blue-600">Id</th>
+                <th class="border border-blue-600">Date</th>
+                <th class="border border-blue-600">Titre</th>
+                <th class="border border-blue-600">Catégorie</th>
+                     <th class="border border-blue-600">Image</th>
+                <th class="border border-blue-600">Description</th>
+                <th class="border border-blue-600">Valeur</th>
+                <th class="border border-blue-600">Adresse</th>
+                  <th class="border border-blue-600">Accessibility</th>
+                <th class="border border-blue-600">Status</th>
+                <th class="border border-blue-600">A la Une</th>               
+            </tr>
+        </thead>
+        <tbody>    
+            <tr>           
+                <td class="border border-blue-600">{{ location.id }}</td>
+                <td class="border border-blue-600">{{ location.date | date ("d/m/Y") }}</td>
+                <td class="border border-blue-600">{{ location.titre }}</td>
+                 <td class="border border-blue-600">{{ location.categorie }}</td>
+                <td class="border border-blue-600">{{ location.image }}</td>
+                <td class="border border-blue-600">{{ location.description }}</td>
+                 <td class="border border-blue-600">{{ location.valeur }}</td>
+                <td class="border border-blue-600">{{ location.adresse }}</td>
+                <td class="border border-blue-600">{{ location.accessibility }}</td>
+                 <td class="border border-blue-600">{{ location.status }}</td>
+                <td class="border border-blue-600">{{ location.a_la_une }}</td>                            
+            </tr>
+        
+        </tbody>
+    </table>
+        
+     
+{% endblock %}

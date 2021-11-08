@@ -68,7 +68,7 @@ class UtilisateursController extends AbstractController
             $manager->persist($utilisateurs);
             $manager->flush();
 
-            return $this->redirectToRoute('index_utilisateurs', ['id' => $utilisateurs->getId()]); // Redirection vers la page
+            return $this->redirectToRoute('index_affichage_utilisateur', ['id' => $utilisateurs->getId()]); // Redirection vers la page
         }
 
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
@@ -91,7 +91,7 @@ class UtilisateursController extends AbstractController
             $entityManager->persist($utilisateurs);
             $entityManager->flush();
 
-            return $this->redirectToRoute('index_utilisateurs', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('index_affichage_utilisateur', ['id' => $utilisateurs->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('utilisateurs/utilisateurs_form2.html.twig', [
