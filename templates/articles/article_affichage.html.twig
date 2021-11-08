@@ -3,9 +3,28 @@
 {% block title %}Info article{% endblock %}
 
 {% block body %}
-    <h1 class="text-4xl text-center font-bold">INFORMATIONS DE L'ARTICLE {{id}} </h1>
- <table class="table-fixed border-separate border border-green-600" >
-        <thead class="bg-red-500 text-white">
+
+{% include 'admin-menu.html.twig' %} 
+
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articles') }}">Retour au tableau des articles</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articlesform1') }}">Formulaire #1</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articlesform2') }}">Formulaire #2</a> 
+</button>
+</div>
+
+
+<div class="mt-5">
+    <h1 class="text-4xl text-center text-red-600 font-bold">INFORMATIONS DE L'ARTICLE {{id}} </h1>
+ <table class="table-fixed border-separate border border-red-600 mt-5" >
+        <thead class="bg-red-600 text-white">
             <tr>
                 <th class="border border-red-600">Id</th>
                 <th class="border border-red-600">Titre</th>
@@ -24,6 +43,7 @@
                               
             </tr>          
         </tbody>
-    </table>     
+    </table>
+</div>    
      
 {% endblock %}

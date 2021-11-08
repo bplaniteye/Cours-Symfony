@@ -17,6 +17,63 @@ use Faker;
 
 class CategorieController extends AbstractController
 {
+       /**
+     * @Route("/categorieform1", name="index_categorieform1" , methods={"GET", "POST"})
+     */
+    // Ici on Fait une Enregistrement avec une Formulaire
+
+    public function categorieForm1(Request $request, EntityManagerInterface $manager)
+    {
+        $categorie = new Categorie(); // Instanciation
+
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($categorie)
+            ->add('titre')
+            ->add('resume')            
+            ->getForm(); // Demande le résultat
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($categorie);
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'index_categorie',
+                ['id' => $categorie->getId()]
+            ); // Redirection vers la page
+        }
+
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('categorie/categorieform1.html.twig', [
+            'formCategorie' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/categorieform2", name="index_categorieform2", methods={"GET","POST"})
+     */
+    public function categorieForm2(Request $request): Response
+    {
+        $categorie = new Categorie();
+        $form = $this->createForm(CategorieType::class, $categorie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($categorie);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index_categorie', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('categorie/categorieform2.html.twig', [
+            'categorie' => $categorie,
+            'formCategorie' => $form->createView(),
+        ]);
+    }
+
     /**
      * @Route("/categorie", name="index_categorie")
      */

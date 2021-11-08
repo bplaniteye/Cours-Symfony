@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% include 'admin-menu.html.twig' %} 
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-green-600 ">
+  <a class="lien" href="{{ path('index_categorie') }}">Retour au tableau des catégories</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-green-600">
+  <a class="lien" href="{{ path('index_categorieform1') }}">Formulaire #1</a> 
+</button>
+</div>
+
+<h1 class="text-4xl text-center text-green-600 font-bold mt-5">FORMULAIRE #2</h1>
+
+{{ form_start(formCategorie) }}
+        <div class="h-20 mt-5 border-box bg-green-600 animate-pulse text-center font-bold ">
+         TITRE <br> {{ form_widget(formCategorie.titre) }} 
+         </div>
+       
+
+        <div class="h-20 mt-5 border-box bg-green-600 animate-pulse text-center font-bold">
+        RESUME <br> {{ form_widget(formCategorie.resume) }}
+        </div>
+
+
+        <div class="mt-5 text-center">
+        <button type="submit" class="rounded-full py-3 px-6 bg-green-600 mt-5">
+        Enregistrer
+        </button>
+        </div>
+{{ form_end(formCategorie) }}
+
+
+{% endblock %}
+

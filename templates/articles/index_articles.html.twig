@@ -12,14 +12,18 @@
 </button>
 
 <button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articleform1') }}">Formulaire de création</a> 
+  <a class="lien" href="{{ path('index_articlesform1') }}">Formulaire #1</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articlesform2') }}">Formulaire #2</a> 
 </button>
 </div>
 
                 
 
-    <h1 class="text-4xl text-center font-bold">TABLEAU DES ARTICLES</h1>
- <table class="table-fixed border-separate border border-red-600" >
+    <h1 class="text-4xl text-center text-red-600 font-bold mt-5">TABLEAU DES ARTICLES</h1>
+ <table class="table-fixed border-separate border border-red-600 mt-5" >
         <thead class="bg-red-500 text-white">
             <tr>
                 <th class="border border-red-600">Id</th>
@@ -35,8 +39,8 @@
                 <td class="border border-red-600">{{ article.id }}</td>
                 <td class="border border-red-600">{{ article.titre }}</td>
                 <td class="border border-red-600">{{ article.contenu }}</td>
-                <td class="border border-red-600">
-                <button class="bouton">  <a class="lien" href="{{ path('articles_affichage',{ 'id':article.id }) }}"> Afficher </a> </button>
+                <td class="border border-red-600 bg-red-600">
+                <a class="lien" href="{{ path('index_article_affichage',{ 'id':article.id }) }}"> Afficher </a>
                 </td>               
             </tr>
              {% endfor %}

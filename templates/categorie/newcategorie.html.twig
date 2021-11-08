@@ -3,21 +3,42 @@
 {% block title %}Nouvelle catégorie{% endblock %}
 
 {% block body %}
+categorie
+{% include 'admin-menu.html.twig' %}
 
 <div class="mt-5">
 <button class="rounded-full py-3 px-6 bg-green-600">
   <a class="lien" href="{{ path('index_categorie') }}">Retour au tableau des catégories</a> 
 </button>
+
+<button class="rounded-full py-3 px-6 bg-green-600">
+  <a class="lien" href="{{ path('index_categorieform1') }}">Formulaire #1</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-green-600">
+  <a class="lien" href="{{ path('index_categorieform2') }}">Formulaire #2</a> 
+</button>
 </div>
 
-<div class=" flex flex-col align-center mt-5">
+<div class="mt-5">
 <h1 class="text-4xl text-center text-green-600 font-bold">NOUVELLE CATEGORIE</h1>
 
-    <div class="gap-5 mt-5 bg-green-600 text-center text-white font-bold">ID </br> {{ categorie.id }}</div>
-
-    <div class=" gap-5 mt-5 border-box bg-green-600 text-center text-white font-bold"> TITRE </br> {{ categorie.titre }}</div>
-
-    <div class=" gap-5 mt-5 border-box bg-green-600 text-center text-white font-bold">RESUME </br> {{ categorie.resume }}</div>
+ <table class="table-fixed w-full border-separate border border-green-600 mt-5" >
+        <thead class="bg-green-500 text-white">
+            <tr>
+                <th class="border border-green-600">Id</th>
+                <th class="border border-green-600">Titre</th>
+                <th class="border border-green-600">Résumé</th>             
+            </tr>
+        </thead>
+        <tbody>   
+            <tr>           
+                <td class="border border-green-600">{{ categorie.id }}</td>
+                <td class="border border-green-600">{{ categorie.titre }}</td>
+                <td class="border border-green-600">{{ categorie.resume }}</td>                             
+            </tr>         
+        </tbody>
+    </table>
 </div>
 
 

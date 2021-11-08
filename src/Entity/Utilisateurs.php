@@ -108,6 +108,11 @@ class Utilisateurs
         return $this->date_de_naissance;
     }
 
+    public function getDateDeNaissance(): ?\DateTimeInterface
+    {
+        return $this->date_de_naissance;
+    }
+
     public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;

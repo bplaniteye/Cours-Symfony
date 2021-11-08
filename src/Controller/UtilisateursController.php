@@ -18,7 +18,7 @@ use Faker;
 class UtilisateursController extends AbstractController
 {
     /**
-     * @Route("/superadmin", name="index_admin")
+     * @Route("/admin", name="index_admin")
      */
     public function admin(): Response
     {
@@ -37,6 +37,69 @@ class UtilisateursController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/utilisateurs_form1", name="index_utilisateurs_form1" , methods={"GET", "POST"})
+     */
+    // Ici on Fait une Enregistrement avec une Formulaire
+
+    public function utilisateursForm1(Request $request, EntityManagerInterface $manager)
+    {
+        $utilisateurs = new Utilisateurs(); // Instanciation
+
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($utilisateurs)
+            ->add('nom')
+            ->add('prenom')
+            ->add('date_de_naissance')
+            ->add('photo')
+            ->add('email')
+            ->add('adresse')
+            ->add('login')
+            ->add('password')
+            ->add('role')         
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($utilisateurs);
+            $manager->flush();
+
+            return $this->redirectToRoute('index_utilisateurs', ['id' => $utilisateurs->getId()]); // Redirection vers la page
+        }
+
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('utilisateurs/utilisateurs_form1.html.twig', [
+            'formUtilisateurs' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/utilisateurs_form2", name="index_utilisateurs_form2", methods={"GET","POST"})
+     */
+    public function utilisateursForm2(Request $request): Response
+    {
+        $utilisateurs = new Utilisateurs();
+        $form = $this->createForm(UtilisateursType::class, $utilisateurs);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($utilisateurs);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index_utilisateurs', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('utilisateurs/utilisateurs_form2.html.twig', [
+            'utilisateurs' => $utilisateurs,
+            'formUtilisateurs' => $form->createView(),
+        ]);
+    }
+
     /**
      * @Route("/utilisateurs", name="index_utilisateurs")
      */
@@ -45,16 +108,16 @@ class UtilisateursController extends AbstractController
         $repo= $this->getDoctrine()->getRepository(Utilisateurs::class);
         $utilisateurs = $repo->findAll();
 
-        return $this->render('utilisateurs/index.html.twig', [
+        return $this->render('utilisateurs/index_utilisateurs.html.twig', [
             'controller_name' => 'UtilisateursController',
             'utilisateurs' => $utilisateurs,
         ]);
     }
 
     /**
-     * @Route("/newuser", name="index_new_utilisateur", methods={"GET", "POST"})
+     * @Route("/nouvel_utilisateur", name="index_nouvel_utilisateur", methods={"GET", "POST"})
      */
-    public function newuser(Request $request, EntityManagerInterface $em): Response
+    public function nouvelUtilisateur(Request $request, EntityManagerInterface $em): Response
     {
         $faker = Faker\Factory::create('fr_FR');
        $utilisateurs = new Utilisateurs();
@@ -74,18 +137,18 @@ class UtilisateursController extends AbstractController
        $em->persist($utilisateurs);
        $em->flush();
        // J'envoie au niveau du temple pour l'enregistrement
-       return $this->render('utilisateurs/newuser.html.twig', [
+       return $this->render('utilisateurs/nouvel_utilisateur.html.twig', [
            'utilisateurs' => $utilisateurs,
        ]);
     }
 
     
     /**
-     * @Route("/{id}", name="utilisateurs_affichage", methods={"GET"})
+     * @Route("/{id}", name="index_affichage_utilisateur", methods={"GET"})
      */
     public function showuser(Utilisateurs $utilisateurs, UtilisateursRepository $utilisateursRepository, Request $request, EntityManagerInterface $manager ): Response
     {
-        return $this->render('utilisateurs/showuser.html.twig', [
+        return $this->render('utilisateurs/affichage_utilisateur.html.twig', [
             'id'=>$utilisateurs->getId(),
             'utilisateurs' => $utilisateurs,
         ]);
