@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LocationController extends AbstractController
 {
     /**
-     * @Route("/location_form1", name="index_location_form1" , methods={"GET", "POST"})
+     * @Route("/location_form1", name="index_locations_form1" , methods={"GET", "POST"})
      */
     // Ici on Fait une Enregistrement avec une Formulaire
 
@@ -60,13 +60,13 @@ class LocationController extends AbstractController
         }
 
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
-        return $this->render('location/location_form1.html.twig', [
-            'formLocation' => $form->createView()
+        return $this->render('location/locations_form1.html.twig', [
+            'formLocations' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/location_form2", name="index_location_form2", methods={"GET","POST"})
+     * @Route("/location_form2", name="index_locations_form2", methods={"GET","POST"})
      */
     public function locationForm2(Request $request): Response
     {
@@ -82,9 +82,9 @@ class LocationController extends AbstractController
             return $this->redirectToRoute('index_location', ['id' => $location -> getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('location/location_form2.html.twig', [
+        return $this->render('location/locations_form2.html.twig', [
             'location' => $location,
-            'formLocation' => $form->createView(),
+            'formLocations' => $form->createView(),
         ]);
     }
 

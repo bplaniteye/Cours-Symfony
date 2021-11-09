@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% include 'admin-menu.html.twig' %} 
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-blue-600 ">
+  <a class="lien" href="{{ path('index_locations') }}">Retour au tableau des locations</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-blue-600">
+  <a class="lien" href="{{ path('index_locations_form2') }}">Formulaire #2</a> 
+</button>
+</div>
+
+<h1 class="text-4xl text-center text-blue-600 font-bold mt-5">FORMULAIRE #1</h1>
+
+{{ form_start(formLocations) }}      
+
+        <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+        DATE <br> {{ form_widget(formLocations.date) }}
+        </div>
+
+         <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold ">
+         TITRE <br> {{ form_widget(formLocations.titre) }} 
+         </div>
+
+            <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+         CATEGORIE <br> {{ form_widget(formLocations.categorie) }}   
+         </div>
+
+           <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+        IMAGE <br> {{ form_widget(formLocations.image) }}
+        </div>
+
+        <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+        DESCRIPTION <br> {{ form_widget(formLocations.description) }}
+        </div>     
+
+         <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+         VALEUR <br> {{ form_widget(formLocations.valeur) }}   
+         </div>
+
+         <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+         ADRESSE <br> {{ form_widget(formLocations.adresse) }}   
+         </div>
+
+         <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+         ACCESSIBILITY <br> {{ form_widget(formLocations.accessibility) }}   
+         </div>
+
+         <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+         STATUS <br> {{ form_widget(formLocations.status) }}   
+         </div>
+
+         <div class="h-20 mt-5 border-box bg-blue-600 animate-pulse text-center font-bold">
+         A LA UNE <br> {{ form_widget(formLocations.a_la_une) }}   
+         </div>
+
+        <div class="mt-5 text-center">
+        <button type="submit" class="rounded-full py-3 px-6 bg-blue-600 mt-5">
+        Enregistrer
+        </button>
+        </div>
+{{ form_end(formLocations) }}
+
+
+{% endblock %}
+
