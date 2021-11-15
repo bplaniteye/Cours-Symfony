@@ -82,6 +82,47 @@ class ArticlesController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/edit_article/{id}", name="index_edit_article" , methods={"GET", "POST"})
+     */
+    // Ici on Fait une Enregistrement avec une Formulaire
+
+    public function edit_article(Request $request, EntityManagerInterface $manager, Articles $articles)
+    {
+       // $articles = new Articles(); // Instanciation
+
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($articles)
+            ->add('titre')
+            ->add('resume')
+            ->add('contenu')
+            ->add('date')
+            ->add('image')
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$manager->persist($articles);
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'index_article_affichage',
+               ['id' => $articles->getId()]
+            );
+        }
+
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('articles/edit_article.html.twig', [
+            'articles' => $articles->getId(),
+            'formArticle' => $form->createView()
+        ]);
+    }
+
+    
 
     /**
      * @Route("/", name="index_articles")

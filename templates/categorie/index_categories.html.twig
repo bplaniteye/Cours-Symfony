@@ -29,7 +29,8 @@
                 <th class="border border-green-600">Id</th>
                 <th class="border border-green-600">Titre</th>
                 <th class="border border-green-600">Résumé</th>
-                <th class="border border-green-600">Action</th>
+                <th class="border border-green-600">Afficher</th>
+                <th class="border border-green-600">Editer</th>
              
             </tr>
         </thead>
@@ -42,7 +43,10 @@
                 <td class="border border-green-600">{{ cat.resume }}</td>
                      <td class="border border-green-600 bg-green-600">                
       <a class="lien" href="{{ path('index_showcategorie',{ 'id':cat.id }) }}"> Afficher </a>
-                </td>            
+                </td>
+                <td class="border border-green-600 bg-green-600">                
+      <a class="lien" href="{{ path('index_edit_categorie',{ 'id':cat.id }) }}"> Modifier </a>
+                </td>              
             </tr>
              {% endfor %}
         </tbody>

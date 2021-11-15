@@ -101,6 +101,33 @@ class UtilisateursController extends AbstractController
     }
 
     /**
+     * @Route("/edit_utilisateur/{id}" , name="index_edit_utilisateur", methods= {"GET","POST"})
+     */
+    public function edit_utilisateur (Request $request, Utilisateurs $utilisateurs) : Response {
+
+        $form= $this->createForm(UtilisateursType::class , $utilisateurs);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            return $this->redirectToRoute('index_affichage_utilisateur' , ['id'=> $utilisateurs->getId()]);
+        }
+        return $this->render('utilisateurs/edit_utilisateur.html.twig', ['utilisateurs'=> $utilisateurs->getId(), 
+        'formUtilisateurs'=>$form->createView(),
+    ]);
+    }
+
+    /**
+     * @Route("/supprimer_utilisateur/{id}" , name="index_supprimer_utilisateur", methods= {"GET","POST"})
+     */
+    public function supprimer_utilisateur (Request $request, Utilisateurs $utilisateurs , EntityManagerInterface $entityManager) : Response {     
+      
+            $entityManager->remove($utilisateurs);
+            $entityManager->flush();
+            return $this->redirectToRoute('index_utilisateurs'); 
+    }
+
+    /**
      * @Route("/utilisateurs", name="index_utilisateurs")
      */
     public function index(): Response

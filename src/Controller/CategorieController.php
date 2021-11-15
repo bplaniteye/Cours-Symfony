@@ -75,6 +75,41 @@ class CategorieController extends AbstractController
     }
 
     /**
+     * @Route("/edit_categorie/ {id}", name="index_edit_categorie" , methods={"GET", "POST"})
+     */
+    // Ici on Fait une Enregistrement avec une Formulaire
+
+    public function edit_categorie(Request $request, EntityManagerInterface $manager , Categorie $categorie)
+    {
+        //$categorie = new Categorie(); // Instanciation
+
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($categorie)
+            ->add('titre')
+            ->add('resume')            
+            ->getForm(); // Demande le résultat
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$manager->persist($categorie);
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'index_showcategorie',
+                ['id' => $categorie->getId()]
+            ); // Redirection vers la page
+        }
+
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('categorie/edit_categorie.html.twig', [
+            'categorie' => $categorie->getId(),
+            'formCategorie' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/categorie", name="index_categorie")
      */
     public function index(): Response
@@ -82,7 +117,7 @@ class CategorieController extends AbstractController
         $repo= $this->getDoctrine()->getRepository(Categorie::class);
         $categorie = $repo->findAll();
 
-        return $this->render('categorie/index.html.twig', [
+        return $this->render('categorie/index_categories.html.twig', [
             'controller_name' => 'CategorieController',
             'categorie' => $categorie,
         ]);

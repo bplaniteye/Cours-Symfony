@@ -6,6 +6,7 @@ use App\Entity\Location;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 
 class LocationType extends AbstractType
 {
@@ -21,7 +22,18 @@ class LocationType extends AbstractType
             ->add('valeur')
             ->add('adresse')
             ->add('accessibility') 
-            ->add('status') 
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'Apple' => 1,
+                    'Banana' => 2,
+                    'Durian' => 3
+                ],
+                'choice_attr' => [
+                    'Apple' => ['data-color' => 'Red'],
+                    'Banana' => ['data-color' => 'Yellow'],
+                    'Durian' => ['data-color' => 'Green']
+                    ]
+            ])
             ->add('a_la_une') ;
     }
 

@@ -30,6 +30,7 @@
                 <th class="border border-red-600">Titre</th>
                 <th class="border border-red-600">Contenu</th>
                 <th class="border border-red-600">Action</th>
+                <th class="border border-red-600">Editer</th>
             </tr>
         </thead>
         <tbody>
@@ -41,7 +42,10 @@
                 <td class="border border-red-600">{{ article.contenu }}</td>
                 <td class="border border-red-600 bg-red-600">
                 <a class="lien" href="{{ path('index_article_affichage',{ 'id':article.id }) }}"> Afficher </a>
-                </td>               
+                </td>  
+                 <td class="border border-red-600 bg-red-600">
+                <a class="lien" href="{{ path('index_edit_article',{ 'id':article.id }) }}"> Editer </a>
+                </td>             
             </tr>
              {% endfor %}
         </tbody>

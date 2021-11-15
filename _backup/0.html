@@ -1,35 +1,55 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-<div class="flex flex-col">
-    
-    <div class="flex">
 
-        <div class="flex rounded-full h-24 w-24 flex items-center justify-center bg-indigo-600 text-white">   
-            <img src="../public/images/users.png" alt="">
-        </div>
+{% include 'admin-menu.html.twig' %}
 
-        <div class="my-auto ml-3">
-            <button class="rounded-full py-3 px-6 bg-red-600">
-                <a class="lien" href="{{ path('index_utilisateur') }}">Espace Usager</a>
-            </button>
-        </div>
+<div class="mt-5">
+    <button class="rounded-full py-3 px-6 bg-yellow-600">
+        <a class="lien" href="{{ path('index_nouvel_utilisateur') }}"> Créer un nouvel article</a>
+    </button>
 
-    </div>
+    <button class="rounded-full py-3 px-6 bg-yellow-600">
+        <a class="lien" href="{{ path('index_utilisateurs_form1') }}">Formulaire #1</a>
+    </button>
 
-    <div class="flex">
-        <div class="flex rounded-full h-24 w-24 flex items-center justify-center bg-indigo-600 text-white">          
-                <img src="../public/images/admin.png" alt="">
-        </div>   
-
-        <div class="my-auto ml-3">
-                <button class="rounded-full py-3 px-6 bg-red-600">
-                    <a class="lien" href="{{ path('index_admin') }}">Espace Administrateur</a>
-                </button>
-        </div>      
-    </div>
-
+    <button class="rounded-full py-3 px-6 bg-yellow-600">
+        <a class="lien" href="{{ path('index_utilisateurs_form2') }}">Formulaire #2</a>
+    </button>
 </div>
+
+<h1 class="text-4xl text-center text-yellow-600 font-bold mt-5">TABLEAU DES UTILISATEURS</h1>
+
+{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+{% for utilisateur in utilisateurs %}
+
+<div class=" w-50 flex justify-center gap-2">
+    <div class="h-32 w-32  bg-yellow-500 rounded-full text-center">{{ utilisateur.photo }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.id }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.nom }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.prenom }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.date_de_naissance|date() }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.adresse }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.email }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.login }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">{{ utilisateur.role }}</div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">
+        <a class="lien" href="{{ path('index_affichage_utilisateur',{ 'id':utilisateur.id }) }}"> Afficher </a>
+    </div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center ">
+        <a class="lien" href="{{ path('index_edit_utilisateur',{ 'id':utilisateur.id }) }}"> Modifier </a>
+    </div>
+    <div class="h-10 bg-yellow-500 rounded-full text-center">
+        <a class="lien" href="{{ path('index_supprimer_utilisateur',{ 'id':utilisateur.id }) }}"> Supprimer </a>
+    </div>
+</div>
+
+
+{% endfor %}
+</tbody>
+</table>
+
 
 {% endblock %}
