@@ -26,8 +26,8 @@ class Utilisateurs
      * @Assert\Length(
      * min = 2,
      * max = 50,
-     * minMessage = "Votre nom doit avoir au moins {{limit}} caractère",
-     * maxMessage = "Votre nom ne doit pas dépasser {{limit}} caractères" )
+     * minMessage="Votre nom doit avoir au moins {{ limit }} caractères",
+     * maxMessage="Votre nom ne doit pas dépasser {{ limit }} caractères")
      */
     private $nom;
 
@@ -36,8 +36,8 @@ class Utilisateurs
      * @Assert\Length(
      * min = 2,
      * max = 50,
-     * minMessage = "Votre prénom doit avoir au moins {{limit}} caractère",
-     * maxMessage = "Votre prénom ne doit pas dépasser {{limit}} caractères" )   
+     * minMessage="Votre prénom doit avoir au moins {{ limit }} caractère",
+     * maxMessage="Votre prénom ne doit pas dépasser {{ limit }} caractères")   
      */
     private $prenom;
 
@@ -54,7 +54,11 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)     
-     * @Assert\Length(min=4 , max=15, minMessage = "Votre login doit avoir au moins {{limit}} caractères" , maxMessage = "Votre login ne doit pas dépasser {{limit}} caractères")
+     * @Assert\Length(
+     * min=4,
+     * max=15,
+     * minMessage="Votre login doit avoir au moins {{ limit }} caractères",
+     * maxMessage="Votre login ne doit pas dépasser {{ limit }} caractères")
      */
     private $login;
 
@@ -74,7 +78,7 @@ class Utilisateurs
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull(message="Ce champ ne doit pas être nul")
-     * @Assert\Email(message="L'email {{value}} n'est pas valide" )    
+     * @Assert\Email(message="L'email {{ value }} n'est pas valide" )    
      */
     private $email;
 
