@@ -8,15 +8,15 @@
 
 <div class="mt-5">
 <button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_new_article') }}"> Créer un nouvel article</a> 
+  <a class="lien" href="{{ path('index_article_nouveau') }}"> Créer un nouvel article</a> 
 </button>
 
 <button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articlesform1') }}">Formulaire #1</a> 
+  <a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a> 
 </button>
 
 <button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articlesform2') }}">Formulaire #2</a> 
+  <a class="lien" href="{{ path('index_articles_formulaire2') }}">Formulaire #2</a> 
 </button>
 </div>
 
@@ -44,7 +44,7 @@
                 <a class="lien" href="{{ path('index_article_affichage',{ 'id':article.id }) }}"> Afficher </a>
                 </td>  
                  <td class="border border-red-600 bg-red-600">
-                <a class="lien" href="{{ path('index_edit_article',{ 'id':article.id }) }}"> Editer </a>
+                <a class="lien" href="{{ path('index_article_modification',{ 'id':article.id }) }}"> Editer </a>
                 </td>             
             </tr>
              {% endfor %}

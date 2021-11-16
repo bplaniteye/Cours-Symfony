@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticlesController extends AbstractController
 {
     /**
-     * @Route("/articlesform1", name="index_articlesform1" , methods={"GET", "POST"})
+     * @Route("/articles_formulaire1", name="index_articles_formulaire1" , methods={"GET", "POST"})
      */
     // Ici on Fait une Enregistrement avec une Formulaire
 
@@ -46,21 +46,17 @@ class ArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($articles);
             $manager->flush();
-
-            return $this->redirectToRoute(
-                'index_articles',
-                ['id' => $articles->getId()]
-            ); // Redirection vers la page
+            // Redirection vers la page
+            return $this->redirectToRoute('articles_index', ['id' => $articles->getId()]);
         }
-
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
-        return $this->render('articles/articlesform1.html.twig', [
+        return $this->render('articles/articles_formulaire1.html.twig', [
             'formArticle' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/articlesform2", name="index_articlesform2", methods={"GET","POST"})
+     * @Route("/articles_formulaire2", name="index_articles_formulaire2", methods={"GET","POST"})
      */
     public function articlesForm2(Request $request): Response
     {
@@ -73,23 +69,23 @@ class ArticlesController extends AbstractController
             $entityManager->persist($articles);
             $entityManager->flush();
 
-            return $this->redirectToRoute('index_articles', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('articles_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('articles/articlesform2.html.twig', [
+        return $this->render('articles/articles_formulaire2.html.twig', [
             'articles' => $articles,
             'formArticle' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/edit_article/{id}", name="index_edit_article" , methods={"GET", "POST"})
+     * @Route("/article_modification/{id}", name="index_article_modification" , methods={"GET", "POST"})
      */
     // Ici on Fait une Enregistrement avec une Formulaire
 
     public function edit_article(Request $request, EntityManagerInterface $manager, Articles $articles)
     {
-       // $articles = new Articles(); // Instanciation
+        // $articles = new Articles(); // Instanciation
 
         // Creation de mon Formulaire
         $form = $this->createFormBuilder($articles)
@@ -111,21 +107,19 @@ class ArticlesController extends AbstractController
 
             return $this->redirectToRoute(
                 'index_article_affichage',
-               ['id' => $articles->getId()]
+                ['id' => $articles->getId()]
             );
         }
 
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
-        return $this->render('articles/edit_article.html.twig', [
+        return $this->render('articles/article_modification.html.twig', [
             'articles' => $articles->getId(),
             'formArticle' => $form->createView()
         ]);
     }
 
-    
-
     /**
-     * @Route("/", name="index_articles")
+     * @Route("/", name="articles_index")
      */
 
     public function index(): Response
@@ -133,7 +127,7 @@ class ArticlesController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Articles::class);
         $articles = $repo->findAll();
 
-        return $this->render('articles/index_articles.html.twig', [
+        return $this->render('articles/articles_index.html.twig', [
             'controller_name' => 'ArticlesController',
             'articles' => $articles,
         ]);
@@ -141,7 +135,7 @@ class ArticlesController extends AbstractController
 
 
     /**
-     * @Route("/new", name="index_new_article", methods={"GET", "POST"})
+     * @Route("/nouveau", name="index_article_nouveau", methods={"GET", "POST"})
      */
     public function nouveau(Request $request, EntityManagerInterface $em): Response
     {
@@ -156,11 +150,10 @@ class ArticlesController extends AbstractController
         $em->persist($articles);
         $em->flush();
         // J'envoie au niveau du temple pour l'enregistrement
-        return $this->render('articles/new_article.html.twig', [
+        return $this->render('articles/article_nouveau.html.twig', [
             'articles' => $articles,
         ]);
     }
-
 
     /**
      * @Route("/{id}", name="index_article_affichage", methods={"GET"})

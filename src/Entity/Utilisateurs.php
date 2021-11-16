@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UtilisateursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
+ * @UniqueEntity("email")
+ * @UniqueEntity("login")
  */
 class Utilisateurs
 {
@@ -19,16 +23,27 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min = 2,
+     * max = 50,
+     * minMessage = "Votre nom doit avoir au moins {{limit}} caractère",
+     * maxMessage = "Votre nom ne doit pas dépasser {{limit}} caractères" )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min = 2,
+     * max = 50,
+     * minMessage = "Votre prénom doit avoir au moins {{limit}} caractère",
+     * maxMessage = "Votre prénom ne doit pas dépasser {{limit}} caractères" )   
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="Ce champ ne doit pas être nul")
      */
     private $photo;
 
@@ -38,22 +53,28 @@ class Utilisateurs
     private $date_de_naissance;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255)     
+     * @Assert\Length(min=4 , max=15, minMessage = "Votre login doit avoir au moins {{limit}} caractères" , maxMessage = "Votre login ne doit pas dépasser {{limit}} caractères")
      */
     private $login;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="Ce champ ne doit pas être nul")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Type("Symfony\Component\Mime\Address")
+     * @Assert\NotNull(message="Ce champ ne doit pas être nul")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="Ce champ ne doit pas être nul")
+     * @Assert\Email(message="L'email {{value}} n'est pas valide" )    
      */
     private $email;
 

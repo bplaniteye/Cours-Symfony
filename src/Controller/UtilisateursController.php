@@ -151,6 +151,7 @@ class UtilisateursController extends AbstractController
        $tab = ["admin","usager"];
        shuffle($tab);
        // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
+       /*
         $utilisateurs->setNom($faker->lastName());
         $utilisateurs->setPrenom($faker->firstName()) ;   
         $utilisateurs->setDateDeNaissance (new \DateTime());
@@ -160,7 +161,18 @@ class UtilisateursController extends AbstractController
         $utilisateurs->setLogin($faker->userName()) ;                    
         $utilisateurs->setPassword("mdp");
         $utilisateurs->setRole($tab[0]) ;
+        */
+        $utilisateurs->setNom("");
+        $utilisateurs->setPrenom("") ;   
+        $utilisateurs->setDateDeNaissance (new \DateTime());
+        $utilisateurs->setPhoto("Photo de profil");
+        $utilisateurs->setEmail("email");
+        $utilisateurs->setAdresse("0");
+        $utilisateurs->setLogin("login") ;                    
+        $utilisateurs->setPassword("mdp");
+        $utilisateurs->setRole($tab[0]) ;
        // Je persiste Mon Enregistrement
+       
        $em->persist($utilisateurs);
        $em->flush();
        // J'envoie au niveau du temple pour l'enregistrement

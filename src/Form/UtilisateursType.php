@@ -6,6 +6,8 @@ use App\Entity\Utilisateurs;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class UtilisateursType extends AbstractType
 {
@@ -13,14 +15,15 @@ class UtilisateursType extends AbstractType
     {
         $builder
         ->add('nom')
-            ->add('prenom')
+            ->add('prenom', TextType::class)
             ->add('date_de_naissance')
             ->add('photo')
             ->add('email')
             ->add('adresse')
             ->add('login')
             ->add('password')
-            ->add('role') ;
+            ->add('role') 
+            ->add('Enregistrer' , SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
