@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Articles;
+use App\Entity\Categorie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
@@ -10,7 +11,7 @@ use Faker;
 
 class ArticlesFixtures extends Fixture
 {
-   /*
+    /*
     public function load(ObjectManager $manager): void
     {
 
@@ -26,7 +27,7 @@ class ArticlesFixtures extends Fixture
         }
      $manager->flush();
     }
-    */
+ 
 
 public function load(ObjectManager $manager): void
 
@@ -47,5 +48,28 @@ public function load(ObjectManager $manager): void
         }    
      $manager->flush();
     }
-  
+       */
+
+    public function load(ObjectManager $manager): void
+    {
+        for ($i = 0; $i < 5; $i++) {
+            $categorie = new Categorie();
+
+            $categorie->setTitre("Catégorie $i")
+                ->setResume("Résumé $i");
+            $manager->persist($categorie);
+
+            for ($j = 0; $j < 20; $j++) {
+                $article = new Articles;
+                $article->setTitre("Titre $j")
+                    ->setContenu("Contenu $j")
+                    ->setDate(new \DateTime())
+                    ->setResume("Résumé $j")
+                    ->setImage("Image $j")
+                    ->setCategorie($categorie);
+                $manager->persist($article);
+            }
+        }
+        $manager->flush();
+    }
 }

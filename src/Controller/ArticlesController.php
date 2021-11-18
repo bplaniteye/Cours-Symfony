@@ -5,11 +5,9 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,34 +18,34 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticlesController extends AbstractController
 {
+    // FORMULAIRE #1
     /**
      * @Route("/articles_formulaire1", name="index_articles_formulaire1" , methods={"GET", "POST"})
      */
-    // Ici on Fait une Enregistrement avec une Formulaire
 
-    public function articlesForm1(Request $request, EntityManagerInterface $manager)
+    // Enregistrement avec un formulaire
+    public function articlesFormulaire1(Request $request, EntityManagerInterface $manager)
     {
-        $articles = new Articles(); // Instanciation
-
-        // Creation de mon Formulaire
+        // Instanciation
+        $articles = new Articles();
+        // Creation du formulaire
         $form = $this->createFormBuilder($articles)
             ->add('titre')
             ->add('resume')
             ->add('contenu')
             ->add('date')
             ->add('image')
-
-            // Demande le résultat
+        // Demande le résultat
             ->getForm();
-
-        // Analyse des Requetes & Traitement des information 
+        // Analyse des Requetes & Traitement des informations 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             $manager->persist($articles);
             $manager->flush();
             // Redirection vers la page
-            return $this->redirectToRoute('articles_index', ['id' => $articles->getId()]);
+            return $this->redirectToRoute('index_article_affichage', ['id' => $articles->getId()]);
         }
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('articles/articles_formulaire1.html.twig', [
@@ -58,20 +56,17 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/articles_formulaire2", name="index_articles_formulaire2", methods={"GET","POST"})
      */
-    public function articlesForm2(Request $request): Response
+    public function articlesFormulaire2(Request $request): Response
     {
         $articles = new Articles();
         $form = $this->createForm(ArticlesType::class, $articles);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($articles);
             $entityManager->flush();
-
-            return $this->redirectToRoute('articles_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('index_article_affichage', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('articles/articles_formulaire2.html.twig', [
             'articles' => $articles,
             'formArticle' => $form->createView(),
@@ -82,11 +77,8 @@ class ArticlesController extends AbstractController
      * @Route("/article_modification/{id}", name="index_article_modification" , methods={"GET", "POST"})
      */
     // Ici on Fait une Enregistrement avec une Formulaire
-
     public function edit_article(Request $request, EntityManagerInterface $manager, Articles $articles)
     {
-        // $articles = new Articles(); // Instanciation
-
         // Creation de mon Formulaire
         $form = $this->createFormBuilder($articles)
             ->add('titre')
@@ -104,10 +96,7 @@ class ArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //$manager->persist($articles);
             $manager->flush();
-
-            return $this->redirectToRoute(
-                'index_article_affichage',
-                ['id' => $articles->getId()]
+            return $this->redirectToRoute('index_article_affichage',['id' => $articles->getId()]
             );
         }
 
@@ -119,7 +108,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/", name="articles_index")
+     * @Route("/", name="index_articles")
      */
 
     public function index(): Response
@@ -132,7 +121,6 @@ class ArticlesController extends AbstractController
             'articles' => $articles,
         ]);
     }
-
 
     /**
      * @Route("/nouveau", name="index_article_nouveau", methods={"GET", "POST"})
@@ -156,9 +144,22 @@ class ArticlesController extends AbstractController
     }
 
     /**
+     * @Route("/{id}", name="index_article_suppression", methods={"GET" , "POST"})
+     */
+    public function articleSuppression(Request $request, Articles $article): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($article);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('index_articles', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
      * @Route("/{id}", name="index_article_affichage", methods={"GET"})
      */
-    public function show(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
+    public function articleAffichage(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
     {
         return $this->render('articles/article_affichage.html.twig', [
             'id' => $articles->getId(),

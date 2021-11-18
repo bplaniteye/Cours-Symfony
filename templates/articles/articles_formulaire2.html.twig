@@ -3,10 +3,9 @@
 {% block body %}
 
 {% include 'admin-menu.html.twig' %} 
-
 <div class="mt-5">
 <button class="rounded-full py-3 px-6 bg-red-600 ">
-  <a class="lien" href="{{ path('articles_index') }}">Retour au tableau des articles</a> 
+  <a class="lien" href="{{ path('index_articles') }}">Retour au tableau des articles</a> 
 </button>
 
 <button class="rounded-full py-3 px-6 bg-red-600">
@@ -17,31 +16,12 @@
 <h1 class="text-4xl text-center text-red-600 font-bold mt-5">FORMULAIRE #2</h1>
 
 {{ form_start(formArticle) }}
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold ">
-         TITRE <br> {{ form_widget(formArticle.titre) }} 
-         </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-        IMAGE <br> {{ form_widget(formArticle.image) }}
-        </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-        DATE <br> {{ form_widget(formArticle.date) }}
-        </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-        RESUME <br> {{ form_widget(formArticle.resume) }}
-        </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-         CONTENU <br> {{ form_widget(formArticle.contenu) }}   
-         </div>
-
-        <div class="mt-5 text-center">
-        <button type="submit" class="rounded-full py-3 px-6 bg-red-600 mt-5">
-        Enregistrer
-        </button>
-        </div>
+       
+      {{ form_row(formArticle.titre) }} 
+       {{ form_row(formArticle.image) }}       
+      {{ form_row(formArticle.date) }}        
+        {{ form_row(formArticle.resume) }}       
+        {{ form_row(formArticle.contenu) }}       
 {{ form_end(formArticle) }}
 
 
