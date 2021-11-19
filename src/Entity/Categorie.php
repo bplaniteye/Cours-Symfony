@@ -42,7 +42,7 @@ class Categorie
     private $resume;
 
     /**
-     * @ORM\OneToMany(targetEntity=articles::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="categorie")
      */
     private $articles;
 
