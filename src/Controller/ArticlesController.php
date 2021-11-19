@@ -35,13 +35,12 @@ class ArticlesController extends AbstractController
             ->add('contenu')
             ->add('date')
             ->add('image')
-        // Demande le résultat
+            // Demande le résultat
             ->getForm();
         // Analyse des Requetes & Traitement des informations 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($articles);
             $manager->flush();
             // Redirection vers la page
@@ -77,26 +76,18 @@ class ArticlesController extends AbstractController
      * @Route("/article_modification/{id}", name="index_article_modification" , methods={"GET", "POST"})
      */
     // Ici on Fait une Enregistrement avec une Formulaire
-    public function edit_article(Request $request, EntityManagerInterface $manager, Articles $articles)
+    public function articleModification(Request $request, EntityManagerInterface $manager, Articles $articles)
     {
         // Creation de mon Formulaire
-        $form = $this->createFormBuilder($articles)
-            ->add('titre')
-            ->add('resume')
-            ->add('contenu')
-            ->add('date')
-            ->add('image')
-
-            // Demande le résultat
-            ->getForm();
-
+        $form = $this->createForm(ArticlesType::class, $articles);
         // Analyse des Requetes & Traitement des information 
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             //$manager->persist($articles);
             $manager->flush();
-            return $this->redirectToRoute('index_article_affichage',['id' => $articles->getId()]
+            return $this->redirectToRoute(
+                'index_article_affichage',
+                ['id' => $articles->getId()]
             );
         }
 

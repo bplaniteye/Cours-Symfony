@@ -22,22 +22,12 @@ class Categorie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     * min=10,
-     * max=50,
-     * minMessage="Ce champ doit avoir au moins {{ limit }} caractères",
-     * maxMessage="Ce champ ne doit pas dépasser {{ limit }} caracrères")
+     * @ORM\Column(type="string", length=255)    
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     * min=50,
-     * max=150,
-     * minMessage="Ce champ doit avoir au moins {{ limit }} caractères",
-     * maxMessage="Ce champ ne doit pas dépasser {{ limit }} caracrères")
+     * @ORM\Column(type="string", length=255)     
      */
     private $resume;
 
@@ -64,7 +54,6 @@ class Categorie
     public function setTitre(string $titre): self
     {
         $this->titre = $titre;
-
         return $this;
     }
 
@@ -88,25 +77,30 @@ class Categorie
         return $this->articles;
     }
 
-    public function addArticle(articles $article): self
+    public function addArticle(Articles $article): self
     {
-        if (!$this->articles->contains($article)) {
+        if (!$this->articles->contains($article)) 
+        {
             $this->articles[] = $article;
             $article->setCategorie($this);
         }
-
         return $this;
     }
 
-    public function removeArticle(articles $article): self
+    public function removeArticle(Articles $article): self
     {
-        if ($this->articles->removeElement($article)) {
+        if ($this->articles->removeElement($article)) 
+        {
             // set the owning side to null (unless already changed)
             if ($article->getCategorie() === $this) {
                 $article->setCategorie(null);
             }
         }
-
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->titre;
     }
 }

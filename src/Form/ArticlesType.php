@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Articles;
+use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,13 +21,14 @@ class ArticlesType extends AbstractType
         ->add('contenu' , TextType::class, ['label' => 'Contenu ', 'required' => true])
         ->add('date', DateType::class , ['label' => 'Date '])
         ->add('image' , TextType::class, ['label' => 'Image ', 'required' => true])
+        ->add('categorie')
         ->add('Enregistrer' , SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Articles::class,
+            'data_class' => Articles::class,            
         ]);
     }
 }

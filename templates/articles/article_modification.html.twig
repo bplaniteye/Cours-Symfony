@@ -16,34 +16,7 @@
 
 <h1 class="text-4xl text-center text-red-600 font-bold mt-5">EDITER L'ARTICLE </h1>
 
-{{ form_start(formArticle) }}
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold ">
-         TITRE <br> {{ form_widget(formArticle.titre) }} 
-         </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-        IMAGE <br> {{ form_widget(formArticle.image) }}
-        </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-        DATE <br> {{ form_widget(formArticle.date) }}
-        </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-        RESUME <br> {{ form_widget(formArticle.resume) }}
-        </div>
-
-        <div class="h-20 mt-5 border-box bg-red-600 animate-pulse text-center font-bold">
-         CONTENU <br> {{ form_widget(formArticle.contenu) }}   
-         </div>
-
-        <div class="mt-5 text-center">
-        <button type="submit" class="rounded-full py-3 px-6 bg-red-600 mt-5">
-        Enregistrer
-        </button>
-        </div>
-{{ form_end(formArticle) }}
-
+{{ form(formArticle) }}
 
 {% endblock %}
 

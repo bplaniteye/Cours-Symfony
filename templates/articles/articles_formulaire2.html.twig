@@ -15,15 +15,7 @@
 
 <h1 class="text-4xl text-center text-red-600 font-bold mt-5">FORMULAIRE #2</h1>
 
-{{ form_start(formArticle) }}
-       
-      {{ form_row(formArticle.titre) }} 
-       {{ form_row(formArticle.image) }}       
-      {{ form_row(formArticle.date) }}        
-        {{ form_row(formArticle.resume) }}       
-        {{ form_row(formArticle.contenu) }}       
-{{ form_end(formArticle) }}
-
+{{ form(formArticle) }}
 
 {% endblock %}
 
