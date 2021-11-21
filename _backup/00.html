@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+
+{% include 'admin-menu.html.twig' %} 
+
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_article_nouveau') }}"> Créer un nouvel article</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articles_formulaire2') }}">Formulaire #2</a> 
+</button>
+</div>
+
+                
+
+    <h1 class="text-4xl text-center text-red-600 font-bold mt-5">TABLEAU DES ARTICLES</h1>
+ <table class="table-auto w-full border-separate border border-red-600 mt-5" >
+        <thead class="bg-red-500 text-white">
+            <tr>
+                <th class="border border-red-600">Id</th>
+                <th class="border border-red-600">Titre</th>
+                <th class="border border-red-600">Contenu</th>
+                  <th class="border border-red-600">Catégorie</th>
+                <th class="border border-red-600">Action</th>
+                <th class="border border-red-600">Modifier</th>
+                <th class="border border-red-600">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+         {# https://twig.symfony.com/doc/3.x/tags/for.html #}
+        {% for article in articles %}
+            <tr>           
+                <td class="border border-red-600">{{ article.id }}</td>
+                <td class="border border-red-600">{{ article.titre }}</td>
+                <td class="border border-red-600">{{ article.contenu }}</td>
+                <td class="border border-red-600">{{ article.categorie.titre }}</td>
+                <td class="border border-red-600 bg-red-600">
+                <a class="lien" href="{{ path('index_article_affichage',{ 'id':article.id }) }}"> Afficher </a>
+                </td>  
+                 <td class="border border-red-600 bg-red-600">
+                <a class="lien" href="{{ path('index_article_modification',{ 'id':article.id }) }}"> Editer </a>
+                </td> 
+                 <td class="border border-red-600 bg-red-600">
+                <a class="lien" href="{{ path('index_article_suppression',{ 'id':article.id }) }}"> Supprimer </a>
+                </td>            
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+        
+     
+{% endblock %}

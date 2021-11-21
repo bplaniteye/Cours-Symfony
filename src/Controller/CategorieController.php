@@ -147,10 +147,11 @@ class CategorieController extends AbstractController
     /**
      * @Route("showcategorie/{id}", name="index_showcategorie", methods={"GET"})
      */
-    public function showcategorie(Categorie $categorie, CategorieRepository $categorieRepository, Request $request, EntityManagerInterface $manager ): Response
+    public function showcategorie(Categorie $categorie): Response
     {
         return $this->render('categorie/showcategorie.html.twig', [
             'id'=>$categorie->getId(),
+            'article' =>$categorie->getArticles(),
             'categorie' => $categorie,
         ]);
     }

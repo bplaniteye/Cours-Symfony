@@ -52,20 +52,24 @@ public function load(ObjectManager $manager): void
 
     public function load(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 5; $i++) {
+        $faker = Faker\Factory::create('fr_FR');
+        $cat=["Roman","BD","Recueil","Essai","Magazine","Journal"];
+        $nbcat=count($cat);
+        for ($i = 0; $i < $nbcat; $i++) {
             $categorie = new Categorie();
 
-            $categorie->setTitre("Catégorie $i")
-                ->setResume("Résumé $i");
+            $categorie->setTitre($cat[$i])
+                ->setResume("Résumé de : $cat[$i]");
             $manager->persist($categorie);
 
             for ($j = 0; $j < 20; $j++) {
                 $article = new Articles;
+                shuffle($cat);
                 $article->setTitre("Titre $j")
-                    ->setContenu("Contenu $j")
+                    ->setContenu("Contenu de l'article $j")
                     ->setDate(new \DateTime())
-                    ->setResume("Résumé $j")
-                    ->setImage("Image $j")
+                    ->setResume("Résumé de l'article $j")
+                    ->setImage("Image de l'article $j")
                     ->setCategorie($categorie);
                 $manager->persist($article);
             }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Entity\Categorie;
 use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,6 +36,7 @@ class ArticlesController extends AbstractController
             ->add('contenu')
             ->add('date')
             ->add('image')
+            ->add('categorie')
             // Demande le résultat
             ->getForm();
         // Analyse des Requetes & Traitement des informations 
