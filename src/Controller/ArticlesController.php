@@ -5,13 +5,16 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\Categorie;
 use App\Form\ArticlesType;
-use App\Repository\ArticlesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManager;
+use App\Repository\ArticlesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("articles")
@@ -31,12 +34,25 @@ class ArticlesController extends AbstractController
         $articles = new Articles();
         // Creation du formulaire
         $form = $this->createFormBuilder($articles)
-            ->add('titre')
-            ->add('resume')
-            ->add('contenu')
-            ->add('date')
-            ->add('image')
-            ->add('categorie')
+        ->add('titre' , TextType::class, ['label' => 'Titre ' , 'required' => true])
+        ->add('resume' , TextType::class, ['label' => 'Résumé ', 'required' => true])
+        ->add('contenu' , TextType::class, ['label' => 'Contenu ', 'required' => true])
+        ->add('date', DateType::class , ['label' => 'Date '])
+        ->add('image' , TextType::class, ['label' => 'Image ', 'required' => true])
+        ->add('categorie', EntityType::class, [
+            // Label du champ    
+            'label'  => 'Catégorie',
+            //'placeholder' => 'Catégor_e',
+    
+            // looks for choices from this entity
+            'class' => Categorie::class,
+        
+            // Sur quelle propriete je fais le choix
+            'choice_label' => 'titre',
+            // used to render a select box, check boxes or radios
+            //'multiple' => true,
+            'expanded' => true,
+        ])
             // Demande le résultat
             ->getForm();
         // Analyse des Requetes & Traitement des informations 
@@ -136,6 +152,17 @@ class ArticlesController extends AbstractController
         ]);
     }
 
+       /**
+     * @Route("/{id}", name="index_article_affichage", methods={"GET"})
+     */
+    public function articleAffichage(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
+    {
+        return $this->render('articles/article_affichage.html.twig', [
+            'id' => $articles->getId(),
+            'articles' => $articles,
+        ]);
+    }
+
     /**
      * @Route("/{id}", name="index_article_suppression", methods={"GET" , "POST"})
      */
@@ -149,14 +176,5 @@ class ArticlesController extends AbstractController
         return $this->redirectToRoute('index_articles', [], Response::HTTP_SEE_OTHER);
     }
 
-    /**
-     * @Route("/{id}", name="index_article_affichage", methods={"GET"})
-     */
-    public function articleAffichage(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
-    {
-        return $this->render('articles/article_affichage.html.twig', [
-            'id' => $articles->getId(),
-            'articles' => $articles,
-        ]);
-    }
+ 
 }

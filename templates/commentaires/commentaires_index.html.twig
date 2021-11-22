@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveaux commentaires{% endblock %}
+
+{% block body %}
+
+{% include 'admin-menu.html.twig' %} 
+
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_article_nouveau') }}"> Créer un nouvel article</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-red-600">
+  <a class="lien" href="{{ path('index_articles_formulaire2') }}">Formulaire #2</a> 
+</button>
+</div>
+
+                
+
+    <h1 class="text-4xl text-center text-red-600 font-bold mt-5">COMMENTAIRES</h1>
+ <table class="table-auto w-full border-separate border border-red-600 mt-5" >
+        <thead class="bg-red-500 text-white">
+            <tr>
+                <th class="border border-red-600">Id</th>
+                <th class="border border-red-600">Auteur</th>
+                <th class="border border-red-600">Email</th>
+                  <th class="border border-red-600">Commentaire</th>
+                      <th class="border border-red-600">Date</th>
+    
+            
+            </tr>
+        </thead>
+        <tbody>
+         {# https://twig.symfony.com/doc/3.x/tags/for.html #}
+        {% for com in commentaires %}
+            <tr>           
+                <td class="border border-red-600">{{ com.id }}</td>
+                <td class="border border-red-600">{{ com.auteur }}</td>
+                <td class="border border-red-600">{{ com.email }}</td>
+          
+                <td class="border border-red-600">{{ com.commentaire }}</td>
+                <td class="border border-red-600">{{ com.date | date() }}</td>
+               
+                      
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+        
+     
+{% endblock %}
