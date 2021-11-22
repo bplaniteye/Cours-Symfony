@@ -82,7 +82,7 @@ class ArticlesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($articles);
             $entityManager->flush();
-            return $this->redirectToRoute('index_article_affichage', [], Response::HTTP_SEE_OTHER);
+           return $this->redirectToRoute('index_article_affichage', ['id' => $articles->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('articles/articles_formulaire2.html.twig', [
             'articles' => $articles,

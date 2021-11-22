@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Auteurs;
 use App\Entity\Articles;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
@@ -34,6 +35,20 @@ class ArticlesType extends AbstractType
             'choice_label' => 'titre',
             // used to render a select box, check boxes or radios
             //'multiple' => true,
+            'expanded' => true,
+        ])
+        ->add('auteurs', EntityType::class, [
+            // Label du champ    
+            'label'  => 'Auteurs',
+            //'placeholder' => 'Auteurs',
+    
+            // looks for choices from this entity
+            'class' => Auteurs::class,
+        
+            // Sur quelle propriete je fais le choix
+            'choice_label' => 'nom',
+            // used to render a select box, check boxes or radios
+            'multiple' => true,
             'expanded' => true,
         ])
         ->add('Enregistrer' , SubmitType::class);
