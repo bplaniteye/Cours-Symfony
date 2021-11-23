@@ -1,14 +1,10 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\Utilisateurs;
-
 use App\Form\UtilisateursType;
 use App\Repository\UtilisateursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManager;
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,7 +63,6 @@ class UtilisateursController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($utilisateurs);
             $manager->flush();
-
             return $this->redirectToRoute('index_affichage_utilisateur', ['id' => $utilisateurs->getId()]); // Redirection vers la page
         }
 
@@ -93,7 +88,6 @@ class UtilisateursController extends AbstractController
 
             return $this->redirectToRoute('index_affichage_utilisateur', ['id' => $utilisateurs->getId()], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('utilisateurs/utilisateurs_form2.html.twig', [
             'utilisateurs' => $utilisateurs,
             'formUtilisateurs' => $form->createView(),
@@ -183,7 +177,7 @@ class UtilisateursController extends AbstractController
 
     
     /**
-     * @Route("/{id}", name="index_affichage_utilisateur", methods={"GET"})
+     * @Route("/utilisateur_affichage/{id}", name="index_affichage_utilisateur", methods={"GET"})
      */
     public function showuser(Utilisateurs $utilisateurs, UtilisateursRepository $utilisateursRepository, Request $request, EntityManagerInterface $manager ): Response
     {

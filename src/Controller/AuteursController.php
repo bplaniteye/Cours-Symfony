@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
+use Faker;
 use Faker\Factory;
 use App\Entity\Auteurs;
+use App\Form\AuteursType;
+use App\Repository\AuteursRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Faker;
 
 class AuteursController extends AbstractController
 {
@@ -28,7 +30,7 @@ class AuteursController extends AbstractController
   
 
     /**
-    * @Route("/auteurs", name="index_auteurs_nouveaux", methods={"GET","POST"})
+    * @Route("/auteurs_nouveaux", name="index_auteurs_nouveaux", methods={"GET","POST"})
     */
 
     public function auteurs(Request $request, EntityManagerInterface $em): Response
@@ -48,6 +50,39 @@ class AuteursController extends AbstractController
             'auteurs' => $auteurs
         ]);
     }
+
+    
+        /**
+     * @Route("auteur_afiichage/{id}", name="index_auteur_affichage", methods={"GET"})
+     */
+    public function auteurAffichage(Auteurs $auteur, AuteursRepository $auteursRepository, Request $request, EntityManagerInterface $manager): Response
+    {
+        return $this->render('auteurs/auteur_affichage.html.twig', [
+            'id' => $auteur->getId(),
+            'auteur' => $auteur,
+        ]);
+    }
+
+       /**
+     * @Route("/auteurs_formulaire", name="index_auteurs_formulaire", methods={"GET","POST"})
+     */
+    public function auteursFormulaire(Request $request): Response
+    {
+        $auteurs = new Auteurs();
+        $form = $this->createForm(AuteursType::class, $auteurs);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($auteurs);
+            $entityManager->flush();
+           return $this->redirectToRoute('index_auteur_affichage', ['id' => $auteurs->getId()], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('auteurs/auteurs_formulaire.html.twig', [
+            'auteurs' => $auteurs,
+            'formAuteurs' => $form->createView(),
+        ]);
+    }
+
 
    
    

@@ -2,35 +2,31 @@
 
 namespace App\DataFixtures;
 
+use Faker;
+use App\Entity\Auteurs;
 use App\Entity\Articles;
 use App\Entity\Categorie;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 
 class ArticlesFixtures extends Fixture
 {
     /*
     public function load(ObjectManager $manager): void
-    {
-
-        
+    {        
         for ($i=0; $i<20 ; $i++ ) 
         { 
-            $articles = new Articles();
-            
+            $articles = new Articles();            
             $articles->setTitre(" Titre de l'article N°$i ")
                     ->setContenu(" Contenu de l'article N° $i ")
                     ->setDate(new \DateTime());
             $manager->persist($articles);
         }
      $manager->flush();
-    }
- 
+    } 
 
 public function load(ObjectManager $manager): void
-
     {
      // J'utlise fixtures avec FAKER
       $faker = Faker\Factory::create('fr_FR');
@@ -48,16 +44,16 @@ public function load(ObjectManager $manager): void
         }    
      $manager->flush();
     }
-       */
+*/
 
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create('fr_FR');
-        $cat=["Roman","BD","Recueil","Essai","Magazine","Journal"];
-        $nbcat=count($cat);
+        $cat = ["Roman", "BD", "Recueil", "Essai", "Magazine", "Journal"];
+        $nbcat = count($cat);
+
         for ($i = 0; $i < $nbcat; $i++) {
             $categorie = new Categorie();
-
             $categorie->setTitre($cat[$i])
                 ->setResume("Résumé de : $cat[$i]");
             $manager->persist($categorie);

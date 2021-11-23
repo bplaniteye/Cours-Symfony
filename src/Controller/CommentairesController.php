@@ -14,7 +14,7 @@ class CommentairesController extends AbstractController
 {
 
      /**
-    * @Route("/", name="index_commentaires_nouveaux", methods={"GET","POST"})
+    * @Route("/commentaires_nouveaux", name="index_commentaires_nouveaux", methods={"GET","POST"})
     */
 
     public function commentaires(Request $request, EntityManagerInterface $em): Response
