@@ -1,50 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Info article{% endblock %}
+{% block title %}Info article
+{% endblock %}
 
 {% block body %}
 
-{% include 'admin_menu.html.twig' %} 
+	{% include 'admin_menu.html.twig' %}
 
-<div class="mt-5">
-<button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articles') }}">Retour au tableau des articles</a> 
-</button>
+	<div class="mt-5">
+		<button class="rounded-full py-3 px-6 bg-red-600">
+			<a class="lien" href="{{ path('index_articles') }}">Retour aux articles</a>
+		</button>
 
-<button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a> 
-</button>
+		<button class="rounded-full py-3 px-6 bg-red-600">
+			<a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a>
+		</button>
 
-<button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articles_formulaire2') }}">Formulaire #2</a> 
-</button>
-</div>
+		<button class="rounded-full py-3 px-6 bg-red-600">
+			<a class="lien" href="{{ path('index_articles_formulaire2') }}">Formulaire #2</a>
+		</button>
+	</div>
 
 
-<div class="mt-5">
-    <h1 class="text-4xl text-center text-red-600 font-bold">INFORMATIONS DE L'ARTICLE </h1>
- <table class="table-fixed w-full border-separate border border-red-600 mt-5" >
-        <thead class="bg-red-600 text-white">
-            <tr>
-                <th class="border border-red-600">Id</th>
-                <th class="border border-red-600">Titre</th>
-                <th class="border border-red-600">Contenu</th>
-                <th class="border border-red-600">Date</th>
-                <th class="border border-red-600">Image</th>
-            </tr>
-        </thead>
-        <tbody>       
-            <tr>           
-                <td class="border border-red-600">{{ articles.id }}</td>
-                <td class="border border-red-600">{{ articles.titre }}</td>
-                <td class="border border-red-600">{{ articles.contenu }}</td>
-                <td class="border border-red-600">{{ articles.date| date("d/m/Y") }}</td>
-                <td class="border border-red-600">{{ articles.image }}</td>
-                              
-            </tr>          
-        </tbody>
-    </table>
-</div>    
+	<div class="mt-5">
+		<h1 class="text-4xl text-center text-red-600 font-bold">
+			{{ articles.titre }}</h1>
+		<div class="border border-red-600">{{ articles.date| date("d/m/Y") }}</div>
+		<div class="border border-red-600">{{ articles.image }}</div>
+		<div class="border border-red-600">{{ articles.contenu }}</div>
 
-     
-{% endblock %}
+    	<div class="border border-red-600"> {{ form(commentairesFormulaire) }} </div>
+
+<div> 
+{% for item in articles.commentaires %}
+{{ item.auteur }}
+  {{ item.reponse }}
+  {{ item.dateheure| date() }}
+  {% else %}
+    Aucun commentaire n'a été publié
+{% endfor %}
+ </div>
+
+<div></div>
+<div></div>
+<div></div>
+
+
+
+	{% endblock %}

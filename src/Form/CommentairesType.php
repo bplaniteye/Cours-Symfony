@@ -18,11 +18,11 @@ class CommentairesType extends AbstractType
         $builder
             ->add('auteur',
             TextType::class, [ 
-            'label' => 'Titre : ',
+            'label' => 'Nom',
             'required' => 'false'])
-            ->add('email' , TextTypê::class,['label' => 'Résumé :', 'required' => 'true'])
-            ->add('reponse' , TextareaType::class,['label' => 'Résumé :', 'required' => 'true'])           
-            ->add('date' , DateTimeType::class,['label' => 'Résumé :', 'required' => 'true'])
+            ->add('email' , TextType::class,['label' => 'Email', 'required' => 'true'])
+            ->add('reponse' , TextareaType::class,['label' => 'Votre commentaire', 'required' => 'true'])           
+            ->add('dateheure' , DateTimeType::class,['label' => 'Date/Heure :', 'required' => 'true'])
             ->add('Valider' , SubmitType::class)
         ;
     }
