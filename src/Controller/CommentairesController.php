@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-<<<<<<< HEAD
 use Faker;
 use App\Entity\Commentaires;
-=======
 use App\Entity\Articles;
 
 use App\Entity\Categorie;
@@ -14,7 +12,6 @@ use App\Entity\Commentaires;
 use App\Form\CommentairesType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\ArticlesRepository;
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +20,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommentairesController extends AbstractController
 {
-<<<<<<< HEAD
 
      /**
     * @Route("/commentaires_nouveaux", name="index_commentaires_nouveaux", methods={"GET","POST"})
@@ -59,7 +55,6 @@ class CommentairesController extends AbstractController
         return $this->render('commentaires/commentaires_index.html.twig', [
             'controller_name' => 'CommentairesController',
             'commentaires' => $commentaires
-=======
     /**
      * @Route("/commentaires", name="index_commentaires")
      */
@@ -87,7 +82,6 @@ class CommentairesController extends AbstractController
         return $this->render('commentaires/index_articles_affichage.html.twig', [
             'commentaires' => $commentaires,
             'commentairesFormulaire' => $form->createView(),
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
         ]);
     }
 }

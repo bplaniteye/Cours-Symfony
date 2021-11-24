@@ -162,10 +162,7 @@ class ArticlesController extends AbstractController
             'articles' => $articles,
         ]);
     }
-<<<<<<< HEAD
-=======
     
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
 
     /**
      * @Route("/{id}", name="index_article_suppression", methods={"GET" , "POST"})

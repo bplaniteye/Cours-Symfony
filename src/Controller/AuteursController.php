@@ -34,11 +34,7 @@ class AuteursController extends AbstractController
   
 
     /**
-<<<<<<< HEAD
-    * @Route("/auteurs_nouveaux", name="index_auteurs_nouveaux", methods={"GET","POST"})
-=======
     * @Route("/auteurs_creation", name="index_auteurs_creation", methods={"GET","POST"})
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
     */
 
     public function auteurs(Request $request, EntityManagerInterface $em): Response
@@ -53,11 +49,7 @@ class AuteursController extends AbstractController
             $em->persist($auteurs);
             $em->flush();            
         }
-<<<<<<< HEAD
-        return $this->render('auteurs/auteurs_nouveaux.html.twig', [
-=======
         return $this->render('auteurs/auteurs_creation.html.twig', [
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
             'controller_name' => 'AuteursController',
             'auteurs' => $auteurs
         ]);
@@ -65,14 +57,6 @@ class AuteursController extends AbstractController
 
     
         /**
-<<<<<<< HEAD
-     * @Route("auteur_afiichage/{id}", name="index_auteur_affichage", methods={"GET"})
-     */
-    public function auteurAffichage(Auteurs $auteur, AuteursRepository $auteursRepository, Request $request, EntityManagerInterface $manager): Response
-    {
-        return $this->render('auteurs/auteur_affichage.html.twig', [
-            'id' => $auteur->getId(),
-=======
      * @Route("auteurs_Informations/{id}", name="index_auteurs_informations", methods={"GET"})
      */
     public function auteursInformations(Auteurs $auteur, AuteursRepository $auteursRepository, Request $request, EntityManagerInterface $manager): Response
@@ -80,7 +64,6 @@ class AuteursController extends AbstractController
         return $this->render('auteurs/auteurs_informations.html.twig', [
             'id' => $auteur->getId(),
             'articles'=> $auteur->getArticles(),
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
             'auteur' => $auteur,
         ]);
     }
