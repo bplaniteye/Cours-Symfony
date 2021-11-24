@@ -136,6 +136,18 @@ class ArticlesController extends AbstractController
         ]);
     }
 
+       /**
+     * @Route("/{id}", name="index_article_affichage", methods={"GET"})
+     */
+    public function articleAffichage(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
+    {
+        return $this->render('articles/article_affichage.html.twig', [
+            'id' => $articles->getId(),
+            'articles' => $articles,
+        ]);
+    }
+    
+
     /**
      * @Route("/{id}", name="index_article_suppression", methods={"GET" , "POST"})
      */
@@ -149,14 +161,5 @@ class ArticlesController extends AbstractController
         return $this->redirectToRoute('index_articles', [], Response::HTTP_SEE_OTHER);
     }
 
-    /**
-     * @Route("/{id}", name="index_article_affichage", methods={"GET"})
-     */
-    public function articleAffichage(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
-    {
-        return $this->render('articles/article_affichage.html.twig', [
-            'id' => $articles->getId(),
-            'articles' => $articles,
-        ]);
-    }
+ 
 }

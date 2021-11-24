@@ -2,20 +2,19 @@
 
 {% block body %}
 
-{% include 'admin-menu.html.twig' %} 
-<div class="mt-5">
-<button class="rounded-full py-3 px-6 bg-red-600 ">
-  <a class="lien" href="{{ path('index_articles') }}">Retour au tableau des articles</a> 
-</button>
+	{% include 'admin_menu.html.twig' %}
+	<div class="mt-5">
+		<button class="rounded-full py-3 px-6 bg-gray-400 hover:bg-green-600 ">
+			<a class="lien" href="{{ path('index_articles') }}">Retour au tableau des articles</a>
+		</button>
+	</div>
 
-<button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a> 
-</button>
-</div>
+	<h1 class="text-4xl text-center font-bold mt-5">FORMULAIRE</h1>
 
-<h1 class="text-4xl text-center text-red-600 font-bold mt-5">FORMULAIRE #2</h1>
+	<div class="flex justify-center mt-5">
+		<div class="w-2/3 h-auto p-5 text-center bg-gray-400  flex items-center justify-center">
+			{{ form(formArticle) }}
+			</div>
+		</div>
 
-{{ form(formArticle) }}
-
-{% endblock %}
-
+	{% endblock %}

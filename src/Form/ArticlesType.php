@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Auteurs;
 use App\Entity\Articles;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,7 +23,34 @@ class ArticlesType extends AbstractType
         ->add('contenu' , TextType::class, ['label' => 'Contenu ', 'required' => true])
         ->add('date', DateType::class , ['label' => 'Date '])
         ->add('image' , TextType::class, ['label' => 'Image ', 'required' => true])
-        ->add('categorie')
+        ->add('categorie', EntityType::class, [
+            // Label du champ    
+            'label'  => 'Catégorie',
+            //'placeholder' => 'Catégor_e',
+    
+            // looks for choices from this entity
+            'class' => Categorie::class,
+        
+            // Sur quelle propriete je fais le choix
+            'choice_label' => 'titre',
+            // used to render a select box, check boxes or radios
+            //'multiple' => true,
+            'expanded' => true,
+        ])
+        ->add('auteurs', EntityType::class, [
+            // Label du champ    
+            'label'  => 'Auteurs',
+            //'placeholder' => 'Auteurs',
+    
+            // looks for choices from this entity
+            'class' => Auteurs::class,
+        
+            // Sur quelle propriete je fais le choix
+            'choice_label' => 'nom',
+            // used to render a select box, check boxes or radios
+            'multiple' => true,
+            'expanded' => true,
+        ])
         ->add('Enregistrer' , SubmitType::class);
     }
 
