@@ -4,7 +4,11 @@
 
 {% block body %}
 
+<<<<<<< HEAD
 {% include 'admin-menu.html.twig' %} 
+=======
+{% include 'admin_menu.html.twig' %} 
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
 
 <div class="mt-5">
 <button class="rounded-full py-3 px-6 bg-gray-600">
@@ -18,8 +22,12 @@
             <tr>
                 <th class="border border-gray-600">Id</th>
                 <th class="border border-gray-600">Nom</th>
+<<<<<<< HEAD
                 <th class="border border-gray-600">Prénom</th>
                   <th class="border border-gray-600">Email</th>
+=======
+                <th class="border border-gray-600">Prénom</th>              
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
                    <th class="border border-gray-600">Afficher</th>
     
             
@@ -31,10 +39,16 @@
             <tr>           
                 <td class="border border-gray-600">{{ aut.id }}</td>
                 <td class="border border-gray-600">{{ aut.nom }}</td>
+<<<<<<< HEAD
                 <td class="border border-gray-600">{{ aut.prenom }}</td>
                   <td class="border border-gray-600">{{ aut.email }}</td>
                     <td class="border border-gray-600 text-black hover:bg-green-400">
                 <a href="{{ path('index_auteur_affichage',{ 'id':aut.id }) }}"> Afficher </a>
+=======
+                <td class="border border-gray-600">{{ aut.prenom }}</td>            
+                    <td class="border border-gray-600 text-black hover:bg-green-400">
+                <a href="{{ path('index_auteurs_informations',{ 'id':aut.id }) }}"> Afficher </a>
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
                 </td> 
                
                       

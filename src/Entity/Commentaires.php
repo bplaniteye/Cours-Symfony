@@ -23,11 +23,20 @@ class Commentaires
     private $auteur;
 
     /**
+<<<<<<< HEAD
+=======
+     * @ORM\Column(type="string", length=1000)
+     */
+    private $reponse;
+
+    /**
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
+<<<<<<< HEAD
      * @ORM\Column(type="string", length=500)
      */
     private $commentaire;
@@ -36,6 +45,16 @@ class Commentaires
      * @ORM\Column(type="date")
      */
     private $date;
+=======
+     * @ORM\Column(type="datetime")
+     */
+    private $dateheure;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Articles::class, inversedBy="commentaires")
+     */
+    private $articles;
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
 
     public function getId(): ?int
     {
@@ -54,6 +73,21 @@ class Commentaires
         return $this;
     }
 
+<<<<<<< HEAD
+=======
+    public function getReponse(): ?string
+    {
+        return $this->reponse;
+    }
+
+    public function setReponse(string $reponse): self
+    {
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
     public function getEmail(): ?string
     {
         return $this->email;
@@ -66,6 +100,7 @@ class Commentaires
         return $this;
     }
 
+<<<<<<< HEAD
     public function getCommentaire(): ?string
     {
         return $this->commentaire;
@@ -74,10 +109,21 @@ class Commentaires
     public function setCommentaire(string $commentaire): self
     {
         $this->commentaire = $commentaire;
+=======
+    public function getDateheure(): ?\DateTimeInterface
+    {
+        return $this->dateheure;
+    }
+
+    public function setDateheure(\DateTimeInterface $dateheure): self
+    {
+        $this->dateheure = $dateheure;
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
@@ -86,6 +132,16 @@ class Commentaires
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+=======
+    public function getArticles(): ?Articles
+    {
+        return $this->articles;
+    }
+
+    public function setArticles(?Articles $articles): self
+    {
+        $this->articles = $articles;
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
 
         return $this;
     }

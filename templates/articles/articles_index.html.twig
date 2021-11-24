@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% include 'admin-menu.html.twig' %} 
+{% include 'admin_menu.html.twig' %} 
 
 <div class="mt-5">
 <button class="rounded-full py-3 px-6 bg-red-600">
@@ -30,6 +30,7 @@
                 <th class="border border-red-600">Titre</th>
                 <th class="border border-red-600">Contenu</th>
                   <th class="border border-red-600">Catégorie</th>
+                         <th class="border border-red-600">Auteurs</th>
                 <th class="border border-red-600">Action</th>
                 <th class="border border-red-600">Modifier</th>
                 <th class="border border-red-600">Supprimer</th>
@@ -43,6 +44,7 @@
                 <td class="border border-red-600">{{ article.titre }}</td>
                 <td class="border border-red-600">{{ article.contenu }}</td>
                 <td class="border border-red-600">{{ article.categorie.titre }}</td>
+                <td class="border border-red-600">{{ article.auteurs.prenom }} {{ article.auteurs.nom }}</td>
                 <td class="border border-red-600 bg-red-600">
                 <a class="lien" href="{{ path('index_article_affichage',{ 'id':article.id }) }}"> Afficher </a>
                 </td>  

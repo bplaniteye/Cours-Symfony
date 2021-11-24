@@ -68,6 +68,7 @@ class Articles
     private $categorie;
 
     /**
+<<<<<<< HEAD
      * @ORM\ManyToMany(targetEntity=Auteurs::class, mappedBy="articles")
      */
     private $auteurs;
@@ -75,6 +76,21 @@ class Articles
     public function __construct()
     {
         $this->auteurs = new ArrayCollection();
+=======
+     * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteurs;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="articles")
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
     }
 
     public function getId(): ?int
@@ -154,6 +170,7 @@ class Articles
         return $this;
     }
 
+<<<<<<< HEAD
     /**
      * @return Collection|Auteurs[]
      */
@@ -167,15 +184,52 @@ class Articles
         if (!$this->auteurs->contains($auteur)) {
             $this->auteurs[] = $auteur;
             $auteur->addArticle($this);
+=======
+    public function getAuteurs(): ?Auteurs
+    {
+        return $this->auteurs;
+    }
+
+    public function setAuteurs(?Auteurs $auteurs): self
+    {
+        $this->auteurs = $auteurs;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaires[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaires $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setArticles($this);
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
         }
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function removeAuteur(Auteurs $auteur): self
     {
         if ($this->auteurs->removeElement($auteur)) {
             $auteur->removeArticle($this);
+=======
+    public function removeCommentaire(Commentaires $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getArticles() === $this) {
+                $commentaire->setArticles(null);
+            }
+>>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
         }
 
         return $this;
