@@ -18,11 +18,7 @@ class AuteursController extends AbstractController
        /**
      * @Route("/auteurs", name="index_auteurs")
      */
-<<<<<<< HEAD
-    public function index(): Response
-=======
     public function auteursIndex(): Response
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
     {
         $repo = $this->getDoctrine()->getRepository(Auteurs::class);
         $auteurs = $repo->findAll();

@@ -68,15 +68,6 @@ class Articles
     private $categorie;
 
     /**
-<<<<<<< HEAD
-     * @ORM\ManyToMany(targetEntity=Auteurs::class, mappedBy="articles")
-     */
-    private $auteurs;
-
-    public function __construct()
-    {
-        $this->auteurs = new ArrayCollection();
-=======
      * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -90,7 +81,6 @@ class Articles
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
     }
 
     public function getId(): ?int
@@ -170,21 +160,6 @@ class Articles
         return $this;
     }
 
-<<<<<<< HEAD
-    /**
-     * @return Collection|Auteurs[]
-     */
-    public function getAuteurs(): Collection
-    {
-        return $this->auteurs;
-    }
-
-    public function addAuteur(Auteurs $auteur): self
-    {
-        if (!$this->auteurs->contains($auteur)) {
-            $this->auteurs[] = $auteur;
-            $auteur->addArticle($this);
-=======
     public function getAuteurs(): ?Auteurs
     {
         return $this->auteurs;
@@ -210,18 +185,11 @@ class Articles
         if (!$this->commentaires->contains($commentaire)) {
             $this->commentaires[] = $commentaire;
             $commentaire->setArticles($this);
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
         }
 
         return $this;
     }
 
-<<<<<<< HEAD
-    public function removeAuteur(Auteurs $auteur): self
-    {
-        if ($this->auteurs->removeElement($auteur)) {
-            $auteur->removeArticle($this);
-=======
     public function removeCommentaire(Commentaires $commentaire): self
     {
         if ($this->commentaires->removeElement($commentaire)) {
@@ -229,7 +197,6 @@ class Articles
             if ($commentaire->getArticles() === $this) {
                 $commentaire->setArticles(null);
             }
->>>>>>> 8853bfe5b71795d67e2d212403a264fa0951e53f
         }
 
         return $this;
