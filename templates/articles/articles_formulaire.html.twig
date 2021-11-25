@@ -11,34 +11,35 @@
 </div>
 
 <h1 class="text-4xl text-center font-bold mt-5">NOUVEL ARTICLE</h1>
-<div class="text-white">
+
+<div class="text-white bg-gray-600">
   {{ form_start(formArticle) }}
-  <div class=" mt-5 border-box bg-gray-600  text-center font-bold ">
+  <div class=" mt-5 border-box  text-center font-bold ">
     TITRE <br> {{ form_widget(formArticle.titre) }}
   </div>
 
-  <div class=" mt-5 border-box bg-gray-600  text-center font-bold">
+  <div class=" mt-5 border-box  text-center font-bold">
     IMAGE <br> {{ form_widget(formArticle.image) }}
   </div>
 
-  <div class=" mt-5 border-box bg-gray-600  text-center font-bold">
+  <div class=" mt-5 border-box text-center font-bold">
     DATE <br> {{ form_widget(formArticle.date) }}
   </div>
 
-  <div class=" mt-5 border-box bg-gray-600  text-center font-bold">
+  <div class=" mt-5 border-box  text-center font-bold">
     RESUME <br> {{ form_widget(formArticle.resume) }}
   </div>
 
-  <div class=" mt-5 border-box bg-gray-600  text-center font-bold">
+  <div class=" mt-5 border-box  text-center font-bold">
     CONTENU <br> {{ form_widget(formArticle.contenu) }}
   </div>
 
-  <div class=" mt-5 border-box bg-gray-600  text-center font-bold">
+  <div class=" mt-5 border-box  text-center font-bold">
     CATEGORIE <br> {{ form_widget(formArticle.categorie) }}
   </div>
 
   <div class="mt-5 text-center">
-    <button type="submit" class="rounded-full py-3 px-6 bg-gray-600 mt-5">
+    <button type="submit" class="rounded-full py-3 px-6 bg-green-600 mt-5">
       Enregistrer
     </button>
   </div>

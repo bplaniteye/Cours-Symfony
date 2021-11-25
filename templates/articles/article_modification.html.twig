@@ -5,16 +5,10 @@
 {% include 'admin_menu.html.twig' %} 
 
 <div class="mt-5">
-<button class="rounded-full py-3 px-6 bg-red-600 ">
-  <a class="lien" href="{{ path('index_articles') }}">Retour au tableau des articles</a> 
+<button class="rounded-full py-3 px-6 bg-gray-600 ">
+  <a class="lien" href="{{ path('index_articles') }}">Retour aux articles</a> 
 </button>
-
-<button class="rounded-full py-3 px-6 bg-red-600">
-  <a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a> 
-</button>
-</div>
-
-<h1 class="text-4xl text-center text-red-600 font-bold mt-5">EDITER L'ARTICLE </h1>
+<h1 class="text-4xl text-center font-bold mt-5">MODIFIER L'ARTICLE </h1>
 
 {{ form(formArticle) }}
 

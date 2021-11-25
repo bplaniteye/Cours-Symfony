@@ -8,50 +8,47 @@
 	{% include 'admin_menu.html.twig' %}
 
 	<div class="mt-5">
-		<button class="rounded-full py-3 px-6 bg-red-600">
+		<button class="rounded-full py-3 px-6 bg-gray-600 hover:bg-green-400">
 			<a class="lien" href="{{ path('index_articles') }}">Retour aux articles</a>
 		</button>
 
-		<button class="rounded-full py-3 px-6 bg-red-600">
-			<a class="lien" href="{{ path('index_articles_formulaire1') }}">Formulaire #1</a>
-		</button>
-
-		<button class="rounded-full py-3 px-6 bg-red-600">
-			<a class="lien" href="{{ path('index_articles_formulaire2') }}">Formulaire #2</a>
+		<button class="rounded-full py-3 px-6 bg-gray-600">
+			<a class="lien" href="{{ path('index_articles_formulaire2') }}">Ecrire un nouvel article</a>
 		</button>
 	</div>
 
 
-	<div class="mt-5">
-		<h1 class="text-4xl text-center text-red-600 font-bold">
-			{{ articles.titre }}</h1>
-		<div class="border border-red-600">{{ articles.date| date("d/m/Y") }}</div>
-		<div class="border border-red-600">{{ articles.image }}</div>
-		<div class="border border-red-600">{{ articles.contenu }}</div>
-
-		<div class="border border-red-600">
+	<div class="mt-5 mr-5">
+		<h1 class="text-2xl text-center font-bold">{{ articles.titre }}</h1>
+		<div class=" mt-5">{{ articles.image }}</div>
+		<div class=" mt-5">Ecrit par
+			{{ articles.auteurs.prenom }}
+			<span class="capitalize">{{ articles.auteurs.nom }}
+			</span>
+			le
+			{{ articles.date| date("d/m/Y") }}</div>
+		<div class="mt-5">{{ articles.contenu }}</div>
+		<div class="mt-5 items-center">
 			{{ form(commentairesFormulaire) }}
 			</div>
-
 			<div>
 				{% for item in articles.commentaires %}
-        	<div class="flex flex-col gap-2 mt-5">
-				<div class="flex ml-5 ">
-					<div class="w-3/6 h-auto p-3 rounded-full bg-red-500 flex items-center justify-center text-white relative">
-						<div class=" mr-5 absolute inset-y-0 left-0">
-							<img src="images/dial.png" alt="">
+					<div class="flex flex-col gap-2 mt-5">
+						<div class="flex ml-5 ">
+							<div class="w-4/5 h-auto p-3 rounded-full bg-red-500 flex text-white relative">
+								<div class="h-32 w-24 rounded-full mr-5">
+									<img src="{{asset('images/dial.png')}}" class="img-fluid">
+								</div>
+								<span class="justify-end">
+									{{ item.auteur }} /	{{ item.dateheure| date() }}<br>{{ item.reponse }}</span>
+							</div>
 						</div>
-					{{ item.auteur }} / {{ item.dateheure| date() }}<br>	{{ item.reponse }}				
 					</div>
-				</div>
-			</div>
-			
+
 				{% else %}
 					Aucun commentaire n'a été publié
 				{% endfor %}
 			</div>
 
 
-
-		
 		{% endblock %}

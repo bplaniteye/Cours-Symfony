@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\Commentaires;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CommentairesType extends AbstractType
@@ -20,7 +21,7 @@ class CommentairesType extends AbstractType
             TextType::class, [ 
             'label' => 'Nom',
             'required' => 'false'])
-            ->add('email' , TextType::class,['label' => 'Email', 'required' => 'true'])
+            ->add('email' , EmailType::class,['label' => 'Email', 'required' => 'true'])
             ->add('reponse' , TextareaType::class,['label' => 'Votre commentaire', 'required' => 'true'])           
             ->add('dateheure' , DateTimeType::class,['label' => 'Date/Heure :', 'required' => 'true'])
             ->add('Valider' , SubmitType::class)

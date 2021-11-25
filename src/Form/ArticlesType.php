@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticlesType extends AbstractType
 {
@@ -20,7 +21,7 @@ class ArticlesType extends AbstractType
         $builder
         ->add('titre' , TextType::class, ['label' => 'Titre ' , 'required' => true])
         ->add('resume' , TextType::class, ['label' => 'Résumé ', 'required' => true])
-        ->add('contenu' , TextType::class, ['label' => 'Contenu ', 'required' => true])
+        ->add('contenu' , TextareaType::class, ['label' => 'Contenu ', 'required' => true])
         ->add('date', DateType::class , ['label' => 'Date '])
         ->add('image' , TextType::class, ['label' => 'Image ', 'required' => true])
         ->add('categorie', EntityType::class, [
@@ -48,12 +49,11 @@ class ArticlesType extends AbstractType
             // Sur quelle propriete je fais le choix
             'choice_label' => 'nom',
             // used to render a select box, check boxes or radios
-            'multiple' => true,
+            //'multiple' => true,
             'expanded' => true,
         ])
         ->add('Enregistrer' , SubmitType::class);
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
