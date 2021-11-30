@@ -2,18 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateursRepository;
+use App\Security\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UtilisateursRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
- * @UniqueEntity("email")
- * @UniqueEntity("login")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Utilisateurs
+class Utilisateurs extends User
 {
+    protected $roles = [];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -63,24 +65,19 @@ class Utilisateurs
     private $login;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotNull(message="Ce champ ne doit pas être nul")
+     * @ORM\Column(type="string", length=255)   
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Type("Symfony\Component\Mime\Address")
-     * @Assert\NotNull(message="Ce champ ne doit pas être nul")
      */
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotNull(message="Ce champ ne doit pas être nul")
-     * @Assert\Email(message="L'email {{ value }} n'est pas valide" )    
+     * @ORM\Column(type="string", length=255)   
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -155,19 +152,7 @@ class Utilisateurs
         $this->login = $login;
 
         return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
+    }  
 
     public function getAdresse(): ?string
     {
@@ -179,19 +164,7 @@ class Utilisateurs
         $this->adresse = $adresse;
 
         return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
+    }  
 
     public function getRole(): ?string
     {
