@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\AuteursRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Security\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AuteursRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=AuteursRepository::class)
  */
-class Auteurs
+class Auteurs extends User
 {
     /**
      * @ORM\Id
@@ -32,12 +33,17 @@ class Auteurs
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="auteurs", orphanRemoval=true)
      */
     private $articles;
+
+     /**
+     * @var string The hashed password
+     */
+    protected $password;
 
     public function __construct()
     {
@@ -71,19 +77,7 @@ class Auteurs
         $this->nom = $nom;
 
         return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
+    }    
 
     /**
      * @return Collection|Articles[]
