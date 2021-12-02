@@ -77,12 +77,7 @@ class Utilisateurs extends User
     /**
      * @ORM\Column(type="string", length=255)   
      */
-    protected $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $role;
+    protected $email;    
 
     public function getId(): ?int
     {
@@ -166,15 +161,7 @@ class Utilisateurs extends User
         return $this;
     }  
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
+  
 
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
+   
 }
