@@ -41,7 +41,7 @@ class Auteurs implements UserInterface
      */
     private $articles;
 
-  /**
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
@@ -84,7 +84,7 @@ class Auteurs implements UserInterface
         $this->nom = $nom;
 
         return $this;
-    }    
+    }
 
     public function getEmail(): ?string
     {
@@ -128,7 +128,7 @@ class Auteurs implements UserInterface
         return $this;
     }
 
-    
+
     /**
      * A visual identifier that represents this user.
      *
@@ -146,8 +146,7 @@ class Auteurs implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
+        $roles[] = 'ROLE_EDITOR';
         return array_unique($roles);
     }
 

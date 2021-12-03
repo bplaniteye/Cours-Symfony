@@ -41,7 +41,7 @@ class UtilisateursType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('role') 
+         
             ->add('Enregistrer' , SubmitType::class);
     }
 
