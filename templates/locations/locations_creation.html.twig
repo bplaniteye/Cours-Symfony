@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}locations{% endblock %}
+
+{% block body %}
+
+{% include 'admin_menu.html.twig' %} 
+
+<div class="mt-5">
+<button class="rounded-full py-3 px-6 bg-blue-600">
+  <a class="lien" href="{{ path('index_locations') }}
+  <!-- "> Nouvelle locations</a> 
+</button>
+
+
+</div>
+
+                
+
+    <h1 class="text-4xl text-center text-blue-600 font-bold mt-5">TABLEAU DES LOCATIONS</h1>
+ <table class="table-fixed border-separate border border-blue-600 mt-5" >
+        <thead class="bg-blue-600 text-white">
+            <tr>
+                <th class="border border-blue-600">Id</th>
+                <th class="border border-blue-600">Date</th>
+                <th class="border border-blue-600">Titre</th>
+                <!-- <th class="border border-blue-600">Catégorie</th> -->
+                     <th class="border border-blue-600">Image</th>
+                <th class="border border-blue-600">Description</th>
+                <th class="border border-blue-600">Valeur</th>
+                <th class="border border-blue-600">Adresse</th>
+                  <th class="border border-blue-600">Accessibilité</th>
+                <th class="border border-blue-600">Statut</th>
+                <th class="border border-blue-600">A la Une</th>
+                   <th class="border border-blue-600">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+         {# https://twig.symfony.com/doc/3.x/tags/for.html #}
+        {% for loc in locations %}
+            <tr>           
+                <td class="border border-blue-600">{{ loc.id }}</td>
+                <td class="border border-blue-600">{{ loc.date | date ("d/m/Y") }}</td>
+                <td class="border border-blue-600">{{ loc.titre }}</td>
+       
+                <td class="border border-blue-600">{{ loc.image }}</td>
+                <td class="border border-blue-600">{{ loc.description }}</td>
+                 <td class="border border-blue-600">{{ loc.valeur }}</td>
+                <td class="border border-blue-600">{{ loc.adresse }}</td>
+                <td class="border border-blue-600">{{ loc.accessibilite }}</td>
+                 <td class="border border-blue-600">{{ loc.statut }}</td>
+                <td class="border border-blue-600">{{ loc.une }}</td>               
+                <td class="border border-blue-600 bg-blue-600">
+                <a class="lien" href="{{ path('index_affichage_location',{ 'id':loc.id }) }}"> Afficher </a>
+                </td>               
+            </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+        
+     
+{% endblock %}

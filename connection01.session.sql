@@ -1,0 +1,1 @@
+select * from articles where auteurs_id=1;

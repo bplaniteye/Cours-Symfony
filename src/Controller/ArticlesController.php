@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Auteurs;
 use App\Entity\Articles;
 use App\Entity\Categorie;
 use App\Form\ArticlesType;
@@ -17,6 +18,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Faker;
 
 /**
  * @Route("articles")
@@ -24,6 +26,59 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticlesController extends AbstractController
 {
+    // CREATION DES DONNEES : ARTICLES - CATEGORIES
+    /**
+     * @Route("/articles_creation", name="index_articles_creation", methods={"GET", "POST"})
+     */
+    public function articlesCreation(Request $request, EntityManagerInterface $em): Response
+    {
+        $faker = Faker\Factory::create('fr_FR');
+        $cat = ["Roman", "BD", "Recueil", "Essai", "Magazine", "Journal"];
+        $nbcat = count($cat);
+        for ($i = 0; $i < $nbcat; $i++) {
+            $categories = new Categorie();
+            $categories->setTitre($cat[$i]);
+            $categories->setResume($cat[$i]);
+            $em->persist($categories);
+
+            for ($j = 0; $j < 10; $j++) 
+            {
+                $auteurs = new Auteurs;
+                $auteurs->setNom($faker->lastName())
+                    ->setPrenom($faker->firstName())
+                    ->setEmail($faker->email())
+                    ->setPassword(password_hash('mdp', PASSWORD_DEFAULT));
+                $em->persist($auteurs);
+              
+                for ($l=0;$l<5;$l++)
+                {
+                    $articles = new Articles();
+                    $articles->setTitre($faker->sentence())
+                   ->setImage($faker->company())
+                   ->setResume($faker->sentence())
+                    ->setDate(new  \DateTime())
+                    ->setContenu($faker->sentence())
+                    ->setCategorie($categories)
+                    ->setAuteurs($auteurs);
+                    //->addCommentaire($commentaires);                        
+                    $em->persist($articles);                  
+
+                    for ($k = 0; $k <5; $k++) 
+                    {
+                        $commentaires = new Commentaires;
+                        $commentaires->setAuteur($faker->firstName() . " " . $faker->lastName())
+                            ->setEmail($faker->email())
+                            ->setReponse($faker->sentence())
+                            ->setDateheure(new \DateTime())
+                            ->setArticles($articles);
+                        $em->persist($commentaires);                     
+                    }
+                }
+            }
+        }
+        $em->flush();
+        return $this->render('articles/articles_creation.html.twig', ['articles' => $articles,]);
+    }
     /**
      * @Route("/articles_formulaire", name="index_articles_formulaire", methods={"GET","POST"})
      */
@@ -36,7 +91,7 @@ class ArticlesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($articles);
             $entityManager->flush();
-           return $this->redirectToRoute('index_article_affichage', ['id' => $articles->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('index_article_affichage', ['id' => $articles->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('articles/articles_formulaire.html.twig', [
             'articles' => $articles,
@@ -46,7 +101,7 @@ class ArticlesController extends AbstractController
 
     /**
      * @Route("/article_modification/{id}", name="index_article_modification" , methods={"GET", "POST"})
-     */    
+     */
     public function articleModification(Request $request, EntityManagerInterface $manager, Articles $articles)
     {
         // Creation de mon Formulaire
@@ -57,9 +112,10 @@ class ArticlesController extends AbstractController
             //$manager->persist($articles);
             $manager->flush();
             return $this->redirectToRoute(
-                'index_article_affichage',['id' => $articles->getId()]
+                'index_article_affichage',
+                ['id' => $articles->getId()]
             );
-        }        
+        }
         return $this->render('articles/article_modification.html.twig', [
             'articles' => $articles->getId(),
             'formArticle' => $form->createView()
@@ -79,7 +135,7 @@ class ArticlesController extends AbstractController
             'articles' => $articles,
         ]);
     }
-    
+
     /**
      * @Route("/{id}", name="index_article_affichage", methods={"GET", "POST"})
      */
@@ -93,7 +149,7 @@ class ArticlesController extends AbstractController
             $entityManager->persist($commentaires);
             $articles->addCommentaire($commentaires);
             $entityManager->flush();
-           return $this->redirectToRoute('index_article_affichage', ['id' => $articles->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('index_article_affichage', ['id' => $articles->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('articles/article_affichage.html.twig', [
             'id' => $articles->getId(),
@@ -101,20 +157,18 @@ class ArticlesController extends AbstractController
             'commentairesFormulaire' => $form->createView(),
         ]);
     }
-    
+
 
     /**
      * @Route("/{id}", name="index_article_suppression", methods={"GET" , "POST"})
      */
     public function articleSuppression(Request $request, Articles $articles): Response
     {
-       // if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($articles);
-            $entityManager->flush();
-       // }
+        // if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($articles);
+        $entityManager->flush();
+        // }
         return $this->redirectToRoute('index_articles', [], Response::HTTP_SEE_OTHER);
     }
-
- 
 }

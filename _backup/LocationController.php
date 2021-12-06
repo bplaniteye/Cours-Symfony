@@ -89,20 +89,20 @@ class LocationController extends AbstractController
     }
 
 
-    /**
-     * @Route("/", name="index_locations")
-     */
+    // /**
+    //  * @Route("/", name="index_locations")
+    //  */
 
-    public function index(): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Location::class);
-        $location = $repo->findAll();
+    // public function index(): Response
+    // {
+    //     $repo = $this->getDoctrine()->getRepository(Location::class);
+    //     $location = $repo->findAll();
 
-        return $this->render('location/index_locations.html.twig', [
-            'controller_name' => 'locationController',
-            'location' => $location,
-        ]);
-    }
+    //     return $this->render('location/index_locations.html.twig', [
+    //         'controller_name' => 'locationController',
+    //         'location' => $location,
+    //     ]);
+    // }
 
 
     /**

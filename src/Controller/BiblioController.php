@@ -13,7 +13,7 @@ class BiblioController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('biblio/index.html.twig', [
+        return $this->render('biblio/biblio_index.html.twig', [
             'controller_name' => 'BiblioController',
         ]);
     }
@@ -68,15 +68,6 @@ class BiblioController extends AbstractController
         ]);
     }
 
-      /**
-     * @Route("connexion", name="index_connexion")
-     */
-    public function connexion(): Response
-    {
-        return $this->render('biblio/connexion.html.twig', [
-            'controller_name' => 'BiblioController',
-        ]);
-    }
 
       /**
      * @Route("biblioadministration", name="index_administration")
@@ -159,39 +150,4 @@ class BiblioController extends AbstractController
             'controller_name' => 'BiblioController',
         ]);
     }
-
-      /**
-     * @Route("bibliologout", name="index_logout")
-     */
-    public function logout(): Response
-    {
-        return $this->render('biblio/logout.html.twig', [
-            'controller_name' => 'BiblioController',
-        ]);
-    }
-
-    
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
