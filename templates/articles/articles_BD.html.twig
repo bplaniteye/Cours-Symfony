@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}Info article
+{% endblock %}
+{% block body %}
+{% include 'admin_menu.html.twig' %}
+
+<div class="mt-5">
+	<button class="rounded-full py-3 px-6 bg-gray-600 hover:bg-green-400">
+		<a class="lien" href="{{ path('index_article') }}">Retour aux article</a>
+	</button>
+</div>
+{% for article in articles %}
+<div class="mt-5 mr-5">
+	<h1 class="text-2xl text-center font-bold">{{ article.titre }}</h1>
+	<div class=" mt-5">{{ article.image }}</div>
+	<div class=" mt-5">Ecrit par
+		{{ article.auteurs.prenom }}
+		<span class="capitalize">{{ article.auteurs.nom }}
+		</span>
+		le
+		{{ article.date| date("d/m/Y") }}
+	</div>
+	<div class="mt-5">{{ article.contenu }}</div>
+
+
+{% endfor %}
+
+
+
+
+	{% endblock %}

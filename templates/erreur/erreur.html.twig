@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle`
+		           and uncomment the following Encore helpers to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="/design/design.css">			
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+
+		{% endblock %}
+	</head>
+	<body>
+	{#{% include 'menu.html.twig' %}#}
+
+		{% block body %}{% endblock %}
+        
+        <div>
+            <img src="{{  asset('images/skull.png') }} " alt="" class="  " >
+            <div class="text-center font-extra-bold text-4xl text-red-900">
+                ERREUR !
+            </div>
+        
+        </div>
+
+      
+
+		{% block footer %}{% endblock %}
+	</body>
+</html>

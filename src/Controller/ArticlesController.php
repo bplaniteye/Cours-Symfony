@@ -26,6 +26,27 @@ use Faker;
 
 class ArticlesController extends AbstractController
 {
+         /**   
+     * Affiche en details d'un arricle
+     * @param AritclesRepository, $articlesrepository 
+     * @Route("/articles_BD", name="articles_BD")
+    */
+    public function articlesAffichageBy (ArticlesRepository $articlesrepository , Articles $articles) 
+    {
+        // $articles = $articlesrepository->createQueryBuilder($articles)
+        // ->andWhere('articles.exampleField = :val')
+        // ->setParameter('val', $value)
+        // ->orderBy('a.id', 'ASC')
+        // ->setMaxResults(10)
+        // ->getQuery()
+        // ->getResult();
+        {
+            //throw $this->createNotFoundException('Desolé il y a Aucun Auteur pour ce id : '.$id);
+            return $this->render('erreur/erreur.html.twig');
+        }
+        return $this->render('articles/articles_BD.html.twig' , ['articles' => $articles,]);
+    }
+
     // CREATION DES DONNEES : ARTICLES - CATEGORIES
     /**
      * @Route("/articles_creation", name="index_articles_creation", methods={"GET", "POST"})
@@ -79,6 +100,8 @@ class ArticlesController extends AbstractController
         $em->flush();
         return $this->render('articles/articles_creation.html.twig', ['articles' => $articles,]);
     }
+
+
     /**
      * @Route("/articles_formulaire", name="index_articles_formulaire", methods={"GET","POST"})
      */
@@ -98,6 +121,8 @@ class ArticlesController extends AbstractController
             'formArticle' => $form->createView(),
         ]);
     }
+
+    
 
     /**
      * @Route("/article_modification/{id}", name="index_article_modification" , methods={"GET", "POST"})
@@ -135,6 +160,27 @@ class ArticlesController extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+
+
+    /**   
+     * Affiche en details d'un arricle
+     * @param $id
+     * @param AritclesRepository, $articlesrepository 
+     * @Route("/{id}", name="articles_show", methods={"GET"})
+    */
+    public function articlesAffichage ($id , ArticlesRepository $articlesrepository) 
+    {
+        $articles = $articlesrepository->find($id);
+        if (!$articles) 
+        {
+            //throw $this->createNotFoundException('Desolé il y a Aucun Auteur pour ce id : '.$id);
+            return $this->render('erreur/erreur.html.twig');
+        }
+        return $this->render('articles/articles_show.html.twig' , ['articles' => $articles ,]);
+    }
+
+     
 
     /**
      * @Route("/{id}", name="index_article_affichage", methods={"GET", "POST"})
