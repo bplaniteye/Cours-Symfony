@@ -26,12 +26,12 @@ use Faker;
 
 class ArticlesController extends AbstractController
 {
-         /**   
+    /**   
      * Affiche en details d'un arricle
      * @param AritclesRepository, $articlesrepository 
      * @Route("/articles_BD", name="articles_BD")
-    */
-    public function articlesAffichageBy (ArticlesRepository $articlesrepository , Articles $articles) 
+     */
+    public function articlesAffichageBy(ArticlesRepository $articlesrepository, Articles $articles)
     {
         // $articles = $articlesrepository->createQueryBuilder($articles)
         // ->andWhere('articles.exampleField = :val')
@@ -44,7 +44,7 @@ class ArticlesController extends AbstractController
             //throw $this->createNotFoundException('Desolé il y a Aucun Auteur pour ce id : '.$id);
             return $this->render('erreur/erreur.html.twig');
         }
-        return $this->render('articles/articles_BD.html.twig' , ['articles' => $articles,]);
+        return $this->render('articles/articles_BD.html.twig', ['articles' => $articles,]);
     }
 
     // CREATION DES DONNEES : ARTICLES - CATEGORIES
@@ -62,37 +62,36 @@ class ArticlesController extends AbstractController
             $categories->setResume($cat[$i]);
             $em->persist($categories);
 
-            for ($j = 0; $j < 10; $j++) 
-            {
+            for ($j = 0; $j < 10; $j++) {
                 $auteurs = new Auteurs;
                 $auteurs->setNom($faker->lastName())
                     ->setPrenom($faker->firstName())
                     ->setEmail($faker->email())
                     ->setPassword(password_hash('mdp', PASSWORD_DEFAULT));
                 $em->persist($auteurs);
-              
-                for ($l=0;$l<5;$l++)
-                {
+
+                for ($l = 0; $l < 5; $l++) {
+                    $stat = array('Publié', 'Non Publié', 'Archivé');
+                    shuffle($stat);
                     $articles = new Articles();
                     $articles->setTitre($faker->sentence())
-                   ->setImage($faker->company())
-                   ->setResume($faker->sentence())
-                    ->setDate(new  \DateTime())
-                    ->setContenu($faker->sentence())
-                    ->setCategorie($categories)
-                    ->setAuteurs($auteurs);
-                    //->addCommentaire($commentaires);                        
-                    $em->persist($articles);                  
+                        ->setImage($faker->imageUrl())
+                        ->setResume($faker->sentence())
+                        ->setDate($faker->dateTimeBetween())
+                        ->setContenu($faker->sentence())
+                        ->setStatut($stat[0])
+                        ->setCategorie($categories)
+                        ->setAuteurs($auteurs);
+                    $em->persist($articles);
 
-                    for ($k = 0; $k <5; $k++) 
-                    {
+                    for ($k = 0; $k < 5; $k++) {
                         $commentaires = new Commentaires;
                         $commentaires->setAuteur($faker->firstName() . " " . $faker->lastName())
                             ->setEmail($faker->email())
                             ->setReponse($faker->sentence())
-                            ->setDateheure(new \DateTime())
+                            ->setDateheure($faker->dateTimeBetween())
                             ->setArticles($articles);
-                        $em->persist($commentaires);                     
+                        $em->persist($commentaires);
                     }
                 }
             }
@@ -122,7 +121,7 @@ class ArticlesController extends AbstractController
         ]);
     }
 
-    
+
 
     /**
      * @Route("/article_modification/{id}", name="index_article_modification" , methods={"GET", "POST"})
@@ -147,19 +146,93 @@ class ArticlesController extends AbstractController
         ]);
     }
 
-    /**
+    // /**
+    //  * @Route("/", name="index_articles")
+    //  */
+
+    // public function index(): Response
+    // {
+    //     $repo = $this->getDoctrine()->getRepository(Articles::class);
+    //     $articles = $repo->findAll();
+    //     return $this->render('articles/articles_index.html.twig', [
+    //         'page' => 'Articles',
+    //         'articles' => $articles,
+    //     ]);
+    // }
+
+     /**
      * @Route("/", name="index_articles")
      */
 
-    public function index(): Response
+    public function index(ArticlesRepository $repo): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Articles::class);
-        $articles = $repo->findAll();
+        // $repo = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repo->auteursPublies();
         return $this->render('articles/articles_index.html.twig', [
+            'page' => 'Articles',
+            'articles' => $articles,
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/articles_BD", name="index_articles_BD")
+     */
+    public function articlesBD(ArticlesRepository $repo): Response
+    {
+        // $repo = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repo->articlesBD();
+        return $this->render('articles/articles_BD.html.twig', [
+            'page' => 'Articles',
+            'articles' => $articles,
+        ]);
+    }
+
+
+    /**
+     * @Route("/articles_publies", name="index_articles_publies")
+     */
+
+    public function articlesPublies(ArticlesRepository $repo): Response
+    {
+        // $repo = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repo->findByPublies();
+        return $this->render('articles/articles_publies.html.twig', [
             'controller_name' => 'ArticlesController',
             'articles' => $articles,
         ]);
     }
+
+    /**
+     * @Route("/articles_non_publies", name="index_articles_non_publies")
+     */
+
+    public function articlesNonPublies(ArticlesRepository $repo): Response
+    {
+        // $repo = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repo->findByNonPublies();
+        return $this->render('articles/articles_non_publies.html.twig', [
+            'page' => 'Articles non publiés',
+            'articles' => $articles,
+        ]);
+    }
+
+    /**
+     * @Route("/articles_archives", name="index_articles_archives")
+     */
+
+    public function articlesArchives(ArticlesRepository $repo): Response
+    {
+        // $repo = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repo->findByArchives();
+        return $this->render('articles/articles_archives.html.twig', [
+            'page' => 'Articles archivés',
+            'articles' => $articles,
+        ]);
+    }
+
+    
 
 
 
@@ -168,19 +241,17 @@ class ArticlesController extends AbstractController
      * @param $id
      * @param AritclesRepository, $articlesrepository 
      * @Route("/{id}", name="articles_show", methods={"GET"})
-    */
-    public function articlesAffichage ($id , ArticlesRepository $articlesrepository) 
+     */
+    public function articlesAffichage($id, ArticlesRepository $articlesrepository)
     {
         $articles = $articlesrepository->find($id);
-        if (!$articles) 
-        {
+        if (!$articles) {
             //throw $this->createNotFoundException('Desolé il y a Aucun Auteur pour ce id : '.$id);
             return $this->render('erreur/erreur.html.twig');
         }
-        return $this->render('articles/articles_show.html.twig' , ['articles' => $articles ,]);
+        return $this->render('articles/articles_show.html.twig', ['articles' => $articles,]);
     }
 
-     
 
     /**
      * @Route("/{id}", name="index_article_affichage", methods={"GET", "POST"})

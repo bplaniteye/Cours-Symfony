@@ -77,7 +77,17 @@ class Utilisateurs extends User
     /**
      * @ORM\Column(type="string", length=255)   
      */
-    protected $email;    
+    protected $email;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sexe;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;    
 
     public function getId(): ?int
     {
@@ -157,6 +167,30 @@ class Utilisateurs extends User
     public function setAdresse(string $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(string $sexe): self
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }  

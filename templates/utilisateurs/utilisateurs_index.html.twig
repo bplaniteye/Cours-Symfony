@@ -24,7 +24,8 @@
                  <th class="border border-yellow-600">Adresse</th>
                  <th class="border border-yellow-600">Email</th>
                  <th class="border border-yellow-600">Login</th>
-                 <th class="border border-yellow-600">Rôle</th>              
+                 <th class="border border-yellow-600">Sexe</th>   
+                 <th class="border border-yellow-600">Statut</th>             
             </tr>
         </thead>
         <tbody>
@@ -37,7 +38,8 @@
     <td class="border border-yellow-600">{{ element.adresse }}</td>
     <td class="border border-yellow-600">{{ element.email }}</td>
     <td class="border border-yellow-600">{{ element.login }}</td>
-    <!-- <td class="border border-yellow-600"> {#{{ element.role }}#} </td>                                         -->
+    <td class="border border-yellow-600"> {{ element.sexe }} </td>  
+    <td class="border border-yellow-600"> {{ element.statut }} </td>                                          -->
 </tr> 
        
    {% endfor %}

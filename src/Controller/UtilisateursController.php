@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controller;
+
 use App\Entity\Utilisateurs;
 use App\Form\UtilisateursType;
 use App\Repository\UtilisateursRepository;
@@ -13,7 +15,7 @@ use Faker;
 
 class UtilisateursController extends AbstractController
 {
-      /**
+    /**
      * @Route("/admin", name="index_admin")
      */
     public function admin(): Response
@@ -22,7 +24,7 @@ class UtilisateursController extends AbstractController
             'controller_name' => 'UtilisateursController',
         ]);
     }
-    
+
     // FORMULAIRE DE CREATION DES UTILISATEURS
     /**
      * @Route("/utilisateurs_formulaire", name="index_utilisateurs_formulaire", methods={"GET","POST"})
@@ -48,29 +50,30 @@ class UtilisateursController extends AbstractController
     /**
      * @Route("/utilisateurs_modification/{id}" , name="index_utilisateurs_modification", methods= {"GET","POST"})
      */
-    public function utilisateursModification (Request $request, Utilisateurs $utilisateurs) : Response 
+    public function utilisateursModification(Request $request, Utilisateurs $utilisateurs): Response
     {
 
-        $form= $this->createForm(UtilisateursType::class , $utilisateurs);
+        $form = $this->createForm(UtilisateursType::class, $utilisateurs);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
-            return $this->redirectToRoute('index_utilisateurs_affichage' , ['id'=> $utilisateurs->getId()]);
+            return $this->redirectToRoute('index_utilisateurs_affichage', ['id' => $utilisateurs->getId()]);
         }
-        return $this->render('utilisateurs/utilisateurs_modification.html.twig', ['utilisateurs'=> $utilisateurs->getId(), 
-        'formUtilisateurs'=>$form->createView(),
-    ]);
+        return $this->render('utilisateurs/utilisateurs_modification.html.twig', [
+            'utilisateurs' => $utilisateurs->getId(),
+            'formUtilisateurs' => $form->createView(),
+        ]);
     }
 
     // AFFICAHGE D'UN UTILISATEUR ET SES INFORMATIONS
     /**
      * @Route("/utilisateurs_affichage/{id}", name="index_utilisateurs_affichage", methods={"GET"})
      */
-    public function utilisateursAffichage(Utilisateurs $utilisateurs, UtilisateursRepository $utilisateursRepository, Request $request, EntityManagerInterface $manager ): Response
+    public function utilisateursAffichage(Utilisateurs $utilisateurs, UtilisateursRepository $utilisateursRepository, Request $request, EntityManagerInterface $manager): Response
     {
         return $this->render('utilisateurs/utilisateurs_affichage.html.twig', [
-            'id'=>$utilisateurs->getId(),
+            'id' => $utilisateurs->getId(),
             'utilisateurs' => $utilisateurs,
         ]);
     }
@@ -79,22 +82,37 @@ class UtilisateursController extends AbstractController
     /**
      * @Route("/utilisateurs_suppression/{id}" , name="index_utilisateurs_suppression", methods= {"GET","POST"})
      */
-    public function utilisateursSuppression (Request $request, Utilisateurs $utilisateurs , EntityManagerInterface $entityManager) : Response 
-    {           
-            $entityManager->remove($utilisateurs);
-            $entityManager->flush();
-            return $this->redirectToRoute('index_utilisateurs'); 
+    public function utilisateursSuppression(Request $request, Utilisateurs $utilisateurs, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($utilisateurs);
+        $entityManager->flush();
+        return $this->redirectToRoute('index_utilisateurs');
     }
 
-    // TABLEAU DES UTILISATEURS
+    // // TABLEAU DES UTILISATEURS
+    // /**
+    //  * @Route("/utilisateurs", name="index_utilisateurs")
+    //  */
+    // public function utilisateursIndex(): Response
+    // {
+    //     // $repo= $this->getDoctrine()->getRepository(Utilisateurs::class);
+    //     // $utilisateurs = $repo->findAll();
+
+    //     return $this->render('utilisateurs/utilisateurs_index.html.twig', [
+    //         'controller_name' => 'UtilisateursController',
+    //         'utilisateurs' => $utilisateurs,
+    //     ]);
+    // }
+
+
     /**
      * @Route("/utilisateurs", name="index_utilisateurs")
      */
-    public function utilisateursIndex(): Response
+    public function utilisateursIndexBySexe(UtilisateursRepository $repo): Response
     {
-        $repo= $this->getDoctrine()->getRepository(Utilisateurs::class);
-        $utilisateurs = $repo->findAll();
-
+        // $repo= $this->getDoctrine()->getRepository(Utilisateurs::class);
+        // $utilisateurs = $repo->findAll();
+        $utilisateurs = $repo->findByHommePublie();
         return $this->render('utilisateurs/utilisateurs_index.html.twig', [
             'controller_name' => 'UtilisateursController',
             'utilisateurs' => $utilisateurs,
@@ -107,29 +125,30 @@ class UtilisateursController extends AbstractController
      */
     public function utilisateursCreation(Request $request, EntityManagerInterface $em): Response
     {
-        for ($i=0;$i<50;$i++)
-        {
+        for ($i = 0; $i < 50; $i++) {
             $faker = Faker\Factory::create('fr_FR');
             $utilisateurs = new Utilisateurs();
-            $tab = ["admin","usager"];
+            $tab = ["Homme", "Femme"];
             shuffle($tab);
+            $stat = ["Publié", "Dépublié", "Archivé"];
+            shuffle($stat);
             $utilisateurs->setNom($faker->lastName());
-            $utilisateurs->setPrenom($faker->firstName()) ;   
-        $utilisateurs->setNaissance (new \DateTime());
+            $utilisateurs->setPrenom($faker->firstName());
+            // $utilisateurs->setDateDeNaissance(new \DateTime());
+            $utilisateurs->setDateDeNaissance($faker->dateTimeBetween());
             $utilisateurs->setPhoto("Photo de profil");
             $utilisateurs->setEmail($faker->email());
             $utilisateurs->setAdresse($faker->address());
-            $utilisateurs->setLogin($faker->userName()) ;                    
-                $utilisateurs->setMotdepasse("mdp");
-            $utilisateurs->setRole($tab[0]) ;                
-       $em->persist($utilisateurs);
-        }   
-       $em->flush();
-       // J'envoie au niveau du temple pour l'enregistrement
-       return $this->render('utilisateurs/utilisateurs_creation.html.twig', [
-           'utilisateurs' => $utilisateurs,
-       ]);
+            $utilisateurs->setLogin($faker->userName());
+            $utilisateurs->setPassword(password_hash("mdp", PASSWORD_DEFAULT));
+            $utilisateurs->setSexe($tab[0]);
+            $utilisateurs->setStatut($stat[0]);
+            $em->persist($utilisateurs);
+        }
+        $em->flush();
+        // J'envoie au niveau du temple pour l'enregistrement
+        return $this->render('utilisateurs/utilisateurs_creation.html.twig', [
+            'utilisateurs' => $utilisateurs,
+        ]);
     }
-    
-    
 }

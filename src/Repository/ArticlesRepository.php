@@ -47,4 +47,69 @@ class ArticlesRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByPublies()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('a')
+       // ->from('Utilisateurs' , 'u')
+        ->where('a.statut =:statut')
+        ->setParameter('statut' , 'Publié')
+        ->orderBy('a.id', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByNonPublies()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('a')
+       // ->from('Utilisateurs' , 'u')
+        ->where('a.statut =:statut')
+        ->setParameter('statut' , 'Non Publié')
+        ->orderBy('a.id', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByArchives()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('a')
+       // ->from('Utilisateurs' , 'u')
+        ->where('a.statut =:statut')
+        ->setParameter('statut' , 'Archivé')
+        ->orderBy('a.id', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function categorie() 
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->innerJoin('App\Entity\Categorie', 'c' , 'WITH' , ' c = a.categorie')
+        ->orderBy('a.titre' , 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function articlesBD() 
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->innerJoin('App\Entity\Categorie', 'c' , 'WITH' , ' c = a.categorie')
+        ->where('c.titre like :titre')
+        ->setParameter('titre' , 'BD')
+        ->orderBy('a.titre' , 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function auteursPublies() 
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->innerJoin('App\Entity\Auteurs', 'o' , 'WITH' , ' o = a.auteurs')
+        ->Where('o.prenom like :prenom')
+        ->setParameter('prenom' , 'Arthur')
+        ->andwhere('a.statut like :statut')
+        ->setParameter('statut' , 'Publié')      
+        ->orderBy('a.id' , 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+
+
 }

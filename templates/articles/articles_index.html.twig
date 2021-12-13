@@ -10,15 +10,33 @@
 <button class="rounded-full py-3 px-6 bg-gray-600 text-white hover:bg-green-400">
   <a class=""  href="{{ path('index_articles_formulaire') }}">Ecrire un nouvel article</a> 
 </button>
+
+<button class="rounded-full py-3 px-6 bg-gray-600 text-white hover:bg-green-400">
+  <a class=""  href="{{ path('index_articles_publies') }}">Articles publiés</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-gray-600 text-white hover:bg-green-400">
+  <a class=""  href="{{ path('index_articles_non_publies') }}">Articles non publiés</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-gray-600 text-white hover:bg-green-400">
+  <a class=""  href="{{ path('index_articles_archives') }}">Articles archivés</a> 
+</button>
+
+<button class="rounded-full py-3 px-6 bg-gray-600 text-white hover:bg-green-400">
+  <a class=""  href="{{ path('index_articles_BD') }}">Catégorie BD</a> 
+</button>
 </div>   
 
- <h1 class="text-4xl text-center font-bold mt-5">ARTICLES <br> Nombre total : {{ articles| length }} </h1>
+
+
+ <h1 class="text-4xl text-center font-bold mt-5"> {{ page }} <br> Nombre total : {{ articles| length }} </h1>
     
  <div class=" flex flex-wrap gap-5 mt-5 justify-center "> 
         {% for article in articles %}
     <div class="flex flex-col w-1/5 border border-black">
-     <div class=" border border-black h-10 text-center ">{{ article.categorie.titre }} </div>
-        <div class="border border-black h-20 text-center "> {{ article.titre }}   </div>       
+     <div class=" border border-black h-10 text-center "> {{ article.id }} / {{ article.categorie.titre }} / {{ article.statut }} </div>
+        <div class=" truncate border border-black h-20 text-center "> {{ article.titre }}   </div>       
         <div class=" border border-black h-10 text-center "> {{ article.auteurs.prenom }} {{ article.auteurs.nom }}</div> 
         <div class=" flex flex-col text-center ">         
         <a class="h-10 border border-black bg-gray-400 hover:bg-green-400 " 
